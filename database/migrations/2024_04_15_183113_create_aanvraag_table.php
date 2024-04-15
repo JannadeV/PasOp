@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('aanvraag', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('oppastijd_id')->constrained();
+            $table->foreignId('oppastijd_id')->constrained(
+                table: 'oppastijd', indexName: 'aanvraag_oppastijd_id'
+            );
             $table->foreignId('oppasser_id')->constrained(
                 table: 'users', indexName: 'aanvraag_oppasser_id'
             );

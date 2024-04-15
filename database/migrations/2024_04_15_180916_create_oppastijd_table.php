@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('oppastijd', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('huisdier_id')->constrained();
+            $table->foreignId('huisdier_id')->constrained(
+                table: 'huisdier', indexName: 'oppastijd_huisdier_id'
+            );
             $table->date('datum');
             $table->time('start');
             $table->time('eind');

@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('dierfoto', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('huisdier_id')->constrained();
+            $table->foreignId('huisdier_id')->constrained(
+                table: 'huisdier', indexName: 'dierfoto_huisdier_id'
+            );
             $table->string('path');
             $table->timestamps();
         });
