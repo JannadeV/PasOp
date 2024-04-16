@@ -11,12 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('huisdier', function (Blueprint $table) {
+        Schema::create('reviews', function (Blueprint $table) {
             $table->id();
             $table->foreignId('baasje_id')->constrained(
-                table: 'users', indexName: 'huisdier_user_id'
+                table: 'users', indexName: 'review_baasje_id'
             );
-            $table->string('soort');
+            $table->foreignId('oppasser_id')->constrained(
+                table: 'users', indexName: 'review_oppasser_id'
+            );
+            $table->smallInteger('rating');
             $table->timestamps();
         });
     }
@@ -26,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('huisdier');
+        Schema::dropIfExists('reviews');
     }
 };

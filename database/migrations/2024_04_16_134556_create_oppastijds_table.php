@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('aanvraag', function (Blueprint $table) {
+        Schema::create('oppastijds', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('oppastijd_id')->constrained(
-                table: 'oppastijd', indexName: 'aanvraag_oppastijd_id'
+            $table->foreignId('huisdier_id')->constrained();
+            $table->date('datum');
+            $table->time('start');
+            $table->time('eind');
+            $table->foreignId('oppasser_id')->nullable()->constrained(
+                table: 'users', indexName: 'oppastijd_oppasser_id'
             );
-            $table->foreignId('oppasser_id')->constrained(
-                table: 'users', indexName: 'aanvraag_oppasser_id'
-            );
-            $table->boolean('antwoord')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('aanvraag');
+        Schema::dropIfExists('oppastijds');
     }
 };

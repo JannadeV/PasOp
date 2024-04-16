@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('dierfoto', function (Blueprint $table) {
+        Schema::create('huisdiers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('huisdier_id')->constrained(
-                table: 'huisdier', indexName: 'dierfoto_huisdier_id'
+            $table->foreignId('baasje_id')->constrained(
+                table: 'users', indexName: 'huisdier_user_id'
             );
-            $table->string('path');
+            $table->string('soort');
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('dierfoto');
+        Schema::dropIfExists('huisdiers');
     }
 };

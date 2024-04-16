@@ -11,15 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('review', function (Blueprint $table) {
+        Schema::create('aanvraags', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('baasje_id')->constrained(
-                table: 'users', indexName: 'review_baasje_id'
-            );
+            $table->foreignId('oppastijd_id')->constrained();
             $table->foreignId('oppasser_id')->constrained(
-                table: 'users', indexName: 'review_oppasser_id'
+                table: 'users', indexName: 'aanvraag_oppasser_id'
             );
-            $table->smallInteger('rating');
+            $table->boolean('antwoord')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('review');
+        Schema::dropIfExists('aanvraags');
     }
 };
