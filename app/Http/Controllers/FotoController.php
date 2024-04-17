@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\huisfoto;
+use App\Models\foto;
 use Illuminate\Http\Request;
 
-class HuisfotoController extends Controller
+class FotoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +34,7 @@ class HuisfotoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(huisfoto $huisfoto)
+    public function show(foto $foto)
     {
         //
     }
@@ -42,7 +42,7 @@ class HuisfotoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(huisfoto $huisfoto)
+    public function edit(foto $foto)
     {
         //
     }
@@ -50,7 +50,7 @@ class HuisfotoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, huisfoto $huisfoto)
+    public function update(Request $request, foto $foto)
     {
         //
     }
@@ -58,7 +58,7 @@ class HuisfotoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(huisfoto $huisfoto)
+    public function destroy(foto $foto)
     {
         //
     }
