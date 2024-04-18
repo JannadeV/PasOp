@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class dierfoto extends Foto
 {
     use HasFactory;
+
+    //Get the huisdier that is on this foto
+    public function huisdier(): BelongsTo
+    {
+        return $this->belongsTo(Huisdier::class);
+    }
 }

@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class huisfoto extends Foto
 {
     use HasFactory;
+    
+    //Get the aanvraag that got this foto
+    public function aanvraag(): BelongsTo
+    {
+        return $this->belongsTo(Aanvraag::class);
+    }
 }
