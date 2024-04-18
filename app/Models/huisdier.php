@@ -21,4 +21,13 @@ class huisdier extends Model
         return $this->hasMany(Oppastijd::class);
     }
 
+
+    /**
+     * The attributes that are mass assignable.
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'naam',
+        'soort',
+    ];
 }

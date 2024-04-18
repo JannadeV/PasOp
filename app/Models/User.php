@@ -35,7 +35,8 @@ class User extends Authenticatable
 
 
 
-    /**The attributes that are mass assignable.
+    /**
+     * The attributes that are mass assignable.
      * @var array<int, string>
      */
     protected $fillable = [
@@ -44,7 +45,8 @@ class User extends Authenticatable
         'password',
     ];
 
-    /**The attributes that should be hidden for serialization.
+    /**
+     * The attributes that should be hidden for serialization.
      * @var array<int, string>
      */
     protected $hidden = [
@@ -52,7 +54,8 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    /**Get the attributes that should be cast.
+    /**
+     * Get the attributes that should be cast.
      * @return array<string, string>
      */
     protected function casts(): array

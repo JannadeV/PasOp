@@ -21,4 +21,14 @@ class oppastijd extends Model
         return $this->hasMany(Aanvraag::class);
     }
 
+    /**
+     * The attributes that are mass assignable.
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'datum',
+        'start',
+        'eind',
+    ];
+
 }
