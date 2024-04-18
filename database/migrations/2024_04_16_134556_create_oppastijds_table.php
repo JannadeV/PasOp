@@ -12,9 +12,8 @@ return new class extends Migration
         Schema::create('oppastijds', function (Blueprint $table) {
             $table->id();
             $table->foreignId('huisdier_id')->constrained();
-            $table->date('datum');
-            $table->time('start');
-            $table->time('eind');
+            $table->dateTime('start');
+            $table->dateTime('eind');
             $table->timestamps();
         });
     }
