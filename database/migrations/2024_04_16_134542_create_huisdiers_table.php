@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('huisdiers', function (Blueprint $table) {
             $table->id();
             $table->foreignId('baasje_id')->constrained(
-                table: 'users', indexName: 'huisdier_user_id'
+                table: 'users', indexName: 'huisdier_baasje_id'
             );
             $table->string('soort');
             $table->timestamps();
