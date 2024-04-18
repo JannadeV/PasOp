@@ -21,6 +21,12 @@ class huisdier extends Model
         return $this->hasMany(Oppastijd::class);
     }
 
+    //Get the dierfotos of this huisdier
+    public function dierfotos(): HasMany
+    {
+        return $this->hasMany(Dierfotos::class);
+    }
+
 
     /**
      * The attributes that are mass assignable.

@@ -20,4 +20,10 @@ class aanvraag extends Model
     {
         return $this->belongsTo(User::class, 'aanvraag_oppasser_id');
     }
+
+    //Get the huisfotos for this aanvraag
+    public function huisfotos(): HasMany
+    {
+        return $this->hasMany(Huisfotos::class);
+    }
 }
