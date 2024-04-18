@@ -28,7 +28,7 @@ class FirstSeeder extends Seeder
             'soort' => 'Hond',
         ]);
         $yuri->dierfotos()->create([
-            'path' => 'img/yuri_trein.png',
+            'path' => 'yuri_trein.png',
         ]);
 
         $yuri->oppastijds()->create([

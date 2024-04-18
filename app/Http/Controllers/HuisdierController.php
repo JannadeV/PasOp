@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\huisdier;
+use App\Models\Huisdier;
 use Illuminate\Http\Request;
 
 class HuisdierController extends Controller
@@ -12,7 +12,10 @@ class HuisdierController extends Controller
      */
     public function index()
     {
-        //
+        $huisdiers = Huisdier::with(['dierfotos' => function($query) {
+            $query->take(1);
+        }])->get();
+        return view('pet-overview', compact('huisdiers'));
     }
 
     /**
