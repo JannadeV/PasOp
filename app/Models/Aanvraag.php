@@ -4,8 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class aanvraag extends Model
+class Aanvraag extends Model
 {
     use HasFactory;
 
@@ -18,12 +20,12 @@ class aanvraag extends Model
     //Get the oppasser that made this aanvraag
     public function oppasser(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'aanvraag_oppasser_id');
+        return $this->belongsTo(User::class, 'oppasser_id');
     }
 
     //Get the huisfotos for this aanvraag
     public function huisfotos(): HasMany
     {
-        return $this->hasMany(Huisfotos::class);
+        return $this->hasMany(Huisfoto::class);
     }
 }

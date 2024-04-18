@@ -2,10 +2,17 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
+use App\Models\Aanvraag;
+use App\Models\Dierfoto;
+use App\Models\Huisdier;
+use App\Models\Huisfoto;
+use App\Models\Oppastijd;
+use App\Models\Review;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class ReviewSeeder extends Seeder
+class FirstSeeder extends Seeder
 {
     /**
      * Run the database seeds.

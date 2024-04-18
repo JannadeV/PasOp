@@ -4,8 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class huisdier extends Model
+class Huisdier extends Model
 {
     use HasFactory;
 
@@ -24,7 +26,7 @@ class huisdier extends Model
     //Get the dierfotos of this huisdier
     public function dierfotos(): HasMany
     {
-        return $this->hasMany(Dierfotos::class);
+        return $this->hasMany(Dierfoto::class);
     }
 
 
