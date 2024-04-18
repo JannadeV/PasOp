@@ -6,9 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+    //Run the migrations.
     public function up(): void
     {
         Schema::create('oppastijds', function (Blueprint $table) {
@@ -17,16 +15,11 @@ return new class extends Migration
             $table->date('datum');
             $table->time('start');
             $table->time('eind');
-            $table->foreignId('oppasser_id')->nullable()->constrained(
-                table: 'users', indexName: 'oppastijd_oppasser_id'
-            );
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
+    //Reverse the migrations.
     public function down(): void
     {
         Schema::dropIfExists('oppastijds');
