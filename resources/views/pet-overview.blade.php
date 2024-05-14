@@ -1,20 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Huisdieroverzicht</title>
-</head>
-<body>
-    <h1>All Pets</h1>
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            {{ __('Pet Overview') }}
+        </h2>
+    </x-slot>
+
     <div class="container">
         <div class="row">
             @foreach ($huisdiers as $huisdier)
                 <div class="col-md-4 mb-3">
-                    <x-huisdier.card :pet="$huisdier" />
+                    <x-huisdier.card :pet="$huisdier"/>
                 </div>
             @endforeach
         </div>
     </div>
-</body>
-</html>
+</x-app-layout>
+
