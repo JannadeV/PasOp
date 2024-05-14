@@ -12,9 +12,10 @@ class HuisdierController extends Controller
      */
     public function index()
     {
-        $huisdiers = Huisdier::with(['dierfotos' => function($query) {
-            $query->take(1);
-        }])->get();
+        $huisdiers = Huisdier::with([
+            'dierfotos' => function($query) {
+                $query->take(1);
+            }, 'oppastijds'])->get();
         return view('pet-overview', compact('huisdiers'));
     }
 
@@ -39,7 +40,8 @@ class HuisdierController extends Controller
      */
     public function show(huisdier $huisdier)
     {
-        //
+        $huisdier = Huisdier::with(['dierfotos', 'oppastijds'])->get();
+        return view('pet-profile', compact('huisdier'));
     }
 
     /**
