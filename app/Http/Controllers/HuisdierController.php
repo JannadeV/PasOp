@@ -15,7 +15,9 @@ class HuisdierController extends Controller
         $huisdiers = Huisdier::with([
             'dierfotos' => function($query) {
                 $query->take(1);
-            }, 'oppastijds'])->get();
+            }, 'oppastijds' => function($query) {
+                $query->orderBy('datum')->orderBy('start');
+            }])->get();
         return view('pet-overview', compact('huisdiers'));
     }
 
