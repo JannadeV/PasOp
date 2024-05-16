@@ -2,8 +2,26 @@
     <img class="object-cover h-full w-48 rounded-l-lg md:rounded-none md:rounded-s-lg" src="{{ asset($pet->dierfotos[0]->path) }}" alt="Foto van een huisdier" >
     <div class="flex flex-col justify-between m-4 leading-normal">
         <div class="flex flex-row">
-            <h3 class="">{{ $pet->naam }}</h3>
-            <p class="">{{ $pet->soort }}</p>
+            <h2 class="text-3xl">{{ $pet->naam }}</h2>
+            @switch( strtolower($pet->soort) )
+                @case("hond")
+                    <i class="fa-solid fa-dog text-gray-700 text-4xl"></i>
+                    @break
+                @case("kat")
+                    <i class="fa-solid fa-cat text-gray-700 text-4xl"></i>
+                    @break
+                @case("vogel")
+                    <i class="fa-solid fa-feather text-gray-700 text-4xl"></i>
+                    @break
+                @case("paard")
+                    <i class="fa-solid fa-horse text-gray-700 text-4xl"></i>
+                    @break
+                @case("vis")
+                    <i class="fa-solid fa-fish text-gray-700 text-4xl"></i>
+                    @break
+                @default
+                    <i class="fa-solid fa-question text-gray-700 text-4xl"></i>
+            @endswitch
         </div>
         <div class="max-h-24 overflow-scroll">
             @foreach ($pet->oppastijds as $oppastijd)
