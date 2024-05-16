@@ -23,14 +23,26 @@
                     <i class="fa-solid fa-question text-gray-700 text-4xl"></i>
             @endswitch
         </div>
-        <div class="max-h-24 overflow-scroll">
-            @foreach ($pet->oppastijds as $oppastijd)
-                <div class="p-1 border border-solid">
-                    <p class="text-xs">{{ date('d-m-y', strtotime($oppastijd->datum))}}</p>
-                    <p class="text-xs">{{ substr($oppastijd->start, 0, 5) }} - {{ substr($oppastijd->eind, 0, 5) }}</p>
-                </div>
-            @endforeach
-        </div>
-        <x-primary-button class="justify-self-end">Naar profiel</x-primary-button>
+        @auth
+            <div class="max-h-24 overflow-scroll">
+                @foreach ($pet->oppastijds as $oppastijd)
+                    <div class="p-1 border border-solid">
+                        <p class="text-xs">{{ date("d-m-'y", strtotime($oppastijd->datum))}}</p>
+                        <p class="text-xs">{{ substr($oppastijd->start, 0, 5) }} - {{ substr($oppastijd->eind, 0, 5) }}</p>
+                    </div>
+                @endforeach
+            </div>
+        @endauth
+        @guest
+            <p>Log in om de oppastijden te zien.</p>
+        @endguest
+        @auth
+            <x-primary-button class="justify-self-end">Naar profiel</x-primary-button>
+        @endauth
+        @guest
+            <x-disabled-button tooltip="log eerst in" class="justify-self-end">
+                Naar profiel
+            </x-disabled-button>
+        @endguest
     </div>
 </div>
