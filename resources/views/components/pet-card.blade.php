@@ -1,7 +1,8 @@
-<div class="flex bg-white h-65 md:max-w-xl border border-gray-200 rounded-lg shadow dark:border-gray-700 dark:bg-gray-800">
+@include('popper::assets')
+<div class="flex bg-white h-65 border border-gray-200 rounded-lg shadow dark:border-gray-700 dark:bg-gray-800">
     <img class="object-cover h-full w-48 rounded-l-lg md:rounded-none md:rounded-s-lg" src="{{ asset($pet->dierfotos[0]->path) }}" alt="Foto van een huisdier" >
-    <div class="flex flex-col justify-between m-4 leading-normal">
-        <div class="flex flex-row">
+    <div class="flex flex-col justify-between m-4 w-full">
+        <div class="flex flex-row justify-between items-center">
             <h2 class="text-3xl">{{ $pet->naam }}</h2>
             @switch( strtolower($pet->soort) )
                 @case("hond")
