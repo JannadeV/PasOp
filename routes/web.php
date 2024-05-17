@@ -12,7 +12,10 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/overview', [HuisdierController::class, 'index']);
+Route::controller(HuisdierController::class)->group(function () {
+    Route::get('/overview', 'index');
+    Route::get('/pet/{id}', 'show')->middleware(['auth', 'verified']);
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
