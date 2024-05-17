@@ -38,7 +38,9 @@
             <p>Log in om de oppastijden te zien.</p>
         @endguest
         @auth
-            <x-primary-button class="justify-self-end">Naar profiel</x-primary-button>
+            <a href="{{ route('pet.show', ['id' => $huisdier->id]) }}">
+                <x-primary-button class="justify-self-end">Naar profiel</x-primary-button>
+            </a>
         @endauth
         @guest
             <x-disabled-button tooltip="log eerst in" class="justify-self-end">
