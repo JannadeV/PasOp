@@ -3,7 +3,7 @@
     <img class="object-cover h-full w-48 rounded-l-lg md:rounded-none md:rounded-s-lg" src="{{ asset($huisdier->dierfotos[0]->path) }}" alt="Foto van een huisdier" >
     <div class="flex flex-col justify-between m-4 w-full">
         <div class="flex flex-row justify-between items-center">
-            <h2 class="text-3xl">{{ $huisdier->naam }}</h2>
+            <h2 class="text-xl font-medium">{{ $huisdier->naam }}</h2>
             @switch( strtolower($huisdier->soort) )
                 @case("hond")
                     <i class="fa-solid fa-dog text-gray-700 text-4xl"></i>

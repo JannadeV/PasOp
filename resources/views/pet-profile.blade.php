@@ -1,5 +1,10 @@
-<x-app-layout :header="$huisdier->naam">
-    <div class="grid grid-cols-12">
+<x-app-layout>
+        <x-slot name="header">
+            <h2 class="font-semibold text-2xl text-gray-800 dark:text-gray-200 leading-tight">
+                {{ $huisdier->naam }}
+            </h2>
+        </x-slot>
+        <div class="grid grid-cols-12">
         <x-image-carousel :fotos="$huisdier->dierfotos" class="col-start-1 col-end-13 h-72"></x-image-carousel>
         <p class="col-start-2 col-end-12 pt-1">Bio <br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vel lectus ac tellus tincidunt suscipit sit amet ac sapien.</p>
         <p class="col-start-2 col-end-12 pt-1 font-bold">Oppastijden</p>
