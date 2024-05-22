@@ -11,10 +11,10 @@ class Aanvraag extends Model
 {
     use HasFactory;
 
-    //Get the oppastijden for this aanvraag
-    public function oppastijds(): HasMany
+    //Get the oppastijden in this aanvraag
+    public function oppastijds(): BelongsToMany
     {
-        return $this->hasMany(Oppastijd::class);
+        return $this->belongsToMany(Oppastijd::class);
     }
 
     //Get the oppasser that made this aanvraag
@@ -31,5 +31,6 @@ class Aanvraag extends Model
 
     protected $fillable = [
         'oppasser_id',
+        'antwoord'
     ];
 }

@@ -18,9 +18,9 @@ class Oppastijd extends Model
     }
 
     //Get the aanvraags for this oppastijd
-    public function aanvraags(): HasMany
+    public function aanvraags(): BelongsToMany
     {
-        return $this->hasMany(Aanvraag::class);
+        return $this->belongsToMany(Aanvraag::class);
     }
 
     /**
@@ -28,6 +28,7 @@ class Oppastijd extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'huisdier_id',
         'datum',
         'start',
         'eind',
