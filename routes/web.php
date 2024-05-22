@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HuisdierController;
+use App\Http\Controllers\AanvraagController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -15,6 +16,11 @@ Route::get('/dashboard', function () {
 Route::controller(HuisdierController::class)->group(function () {
     Route::get('/overview', 'index');
     Route::get('/pet/{id}', 'show')->middleware(['auth', 'verified'])->name('pet.show');
+});
+
+Route::controller(AanvraagController::class)->group(function() {
+    Route::post('/aanvragen', 'store')->name('aanvragen.store');
+    Route::post('/aanvragen/{id}', 'show')->middleware(['auth', 'verified'])->name('aanvragen.show');
 });
 
 Route::middleware('auth')->group(function () {
