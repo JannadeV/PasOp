@@ -40,11 +40,16 @@ class HuisdierController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(huisdier $huisdier)
+    public function show(int $id)
     {
-        $huisdier = Huisdier::with(['dierfotos', 'oppastijds'])->get();
+        $huisdier = Huisdier::with([
+            'dierfotos',
+            'oppastijds' => function($query) {
+                $query->orderBy('datum')->orderBy('start');
+            }])->find($id);
         return view('pet-profile', compact('huisdier'));
     }
+
 
     /**
      * Show the form for editing the specified resource.
