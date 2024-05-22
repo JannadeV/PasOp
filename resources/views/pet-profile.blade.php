@@ -1,4 +1,28 @@
 <x-app-layout>
+    <script>
+        function validateForm () {
+            // Zoek alle checkboxen
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+            // Loop door alle checkboxen en controleer of er minstens één is aangevinkt
+            let isChecked = false;
+            for (let i = 0; i < checkboxes.length; i++) {
+                if (checkbox.checked) {
+                    isChecked = true;
+                    break;
+                }
+            };
+
+            // Als er geen checkbox is aangevinkt, toon dan een melding en voorkom dat het formulier wordt ingediend
+            if (!isChecked) {
+                alert('Selecteer minstens één optie voordat je doorgaat.');
+                console.log("geen checkbox");
+                return false; // Voorkom dat het formulier wordt ingediend
+            } else {
+                console.log("wel checkbox");
+            }
+        }
+    </script>
         <x-slot name="header">
             <h2 class="font-semibold text-2xl text-gray-800 dark:text-gray-200 leading-tight">
                 {{ $huisdier->naam }}
