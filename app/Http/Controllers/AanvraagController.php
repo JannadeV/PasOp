@@ -46,10 +46,10 @@ class AanvraagController extends Controller
         });
 
         // Koppel de geselecteerde oppastijden aan de aanvraag
-        $aanvraag->oppastijden()->sync($selectedOppastijdIds);
+        $aanvraag->oppastijds()->sync($selectedOppastijdIds);
 
         // Redirect naar de volgende pagina met de aanvraag ID
-        return redirect()->route('aanvragen.show', ['aanvraag' => $aanvraag->id]);
+        return redirect()->route('aanvragen.show', ['id' => $aanvraag->id]);
     }
 
     /**
@@ -57,11 +57,9 @@ class AanvraagController extends Controller
      */
     public function show(aanvraag $aanvraag)
     {
-        $aanvraagInfo = Aanvraag::with(
-            $aanvraag->oppastijds[0]->huisdier
-        );
 
-        return view('aanvraag', compact($aanvraagInfo));
+
+        return view('aanvraag');
     }
 
     /**

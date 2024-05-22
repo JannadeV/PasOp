@@ -20,7 +20,7 @@ Route::controller(HuisdierController::class)->group(function () {
 
 Route::controller(AanvraagController::class)->group(function() {
     Route::post('/aanvragen', 'store')->name('aanvragen.store');
-    Route::post('/aanvragen/{id}', 'show')->middleware(['auth', 'verified'])->name('aanvragen.show');
+    Route::get('/aanvragen/{id}', 'show')->middleware(['auth', 'verified'])->name('aanvragen.show');
 });
 
 Route::middleware('auth')->group(function () {
