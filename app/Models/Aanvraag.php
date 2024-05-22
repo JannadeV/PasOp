@@ -11,10 +11,10 @@ class Aanvraag extends Model
 {
     use HasFactory;
 
-    //Get the oppastijd for this aanvraag
-    public function oppastijd(): BelongsTo
+    //Get the oppastijden for this aanvraag
+    public function oppastijds(): HasMany
     {
-        return $this->belongsTo(Oppastijd::class);
+        return $this->hasMany(Oppastijd::class);
     }
 
     //Get the oppasser that made this aanvraag
@@ -28,4 +28,8 @@ class Aanvraag extends Model
     {
         return $this->hasMany(Huisfoto::class);
     }
+
+    protected $fillable = [
+        'oppasser_id',
+    ];
 }
