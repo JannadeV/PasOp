@@ -28,7 +28,28 @@ class AanvraagController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Valideer de input
+        $validated = $request->validate([
+            'tijden' => 'required|array',
+            'tijden.*.id' => 'required|exists:oppastijds,id',
+            'tijden.*.selected' => 'nullable|boolean'
+        ]);
+
+        // Maak een nieuwe aanvraag
+        $aanvraag = Aanvraag::create([
+            'oppasser_id' => auth()->id(),
+        ]);
+
+        // Verzamel de geselecteerde oppastijd-IDs
+        $selectedOppastijdIds = array_filter(array_column($validated['tijden'], 'id'), function($tijd) {
+            return isset($tijd['selected']);
+        });
+
+        // Koppel de geselecteerde oppastijden aan de aanvraag
+        $aanvraag->oppastijden()->sync($selectedOppastijdIds);
+
+        // Redirect naar de volgende pagina met de aanvraag ID
+        return redirect()->route('aanvragen.show', ['aanvraag' => $aanvraag->id]);
     }
 
     /**
