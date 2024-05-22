@@ -57,7 +57,11 @@ class AanvraagController extends Controller
      */
     public function show(aanvraag $aanvraag)
     {
-        //
+        $aanvraagInfo = Aanvraag::with(
+            $aanvraag->oppastijds[0]->huisdier
+        );
+
+        return view('aanvraag', compact($aanvraagInfo));
     }
 
     /**
