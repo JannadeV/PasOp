@@ -23,6 +23,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('oppastijds');
+        Schema::table('oppastijds', function(Blueprint $table) {
+            $table->dropColumn('datum');
+            $table->dateTime('start')->change();
+            $table->dateTime('eind')->change();
+        });
     }
 };

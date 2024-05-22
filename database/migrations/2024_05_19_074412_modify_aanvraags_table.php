@@ -1,3 +1,4 @@
+2024_04_16_134570_create_aanvraags_table.php
 <?php
 
 use Illuminate\Database\Migrations\Migration;
@@ -12,6 +13,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('aanvraags', function (Blueprint $table) {
+            $table->dropForeign(['oppastijd_id']);
             $table->dropColumn('oppastijd_id');
         });
     }
@@ -21,6 +23,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('aanvraags');
+        Schema::table('aanvraags', function (Blueprint $table) {
+            $table->foreignId('oppastijd_id')->constrained();
+        });
     }
 };
