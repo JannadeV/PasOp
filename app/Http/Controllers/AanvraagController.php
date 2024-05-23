@@ -57,7 +57,11 @@ class AanvraagController extends Controller
      */
     public function show(int $id)
     {
-        $aanvraag = Aanvraag::find($id);
+        $aanvraag = Aanvraag::with([
+            'oppastijds' => function($query) {
+                $query->orderBy('datum')->orderBy('start');
+            }
+        ])->find($id);
         return view('aanvraag', compact('aanvraag'));
     }
 
