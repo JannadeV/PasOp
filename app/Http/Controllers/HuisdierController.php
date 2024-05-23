@@ -42,12 +42,13 @@ class HuisdierController extends Controller
      */
     public function show(int $id)
     {
+        $user = auth()->user();
         $huisdier = Huisdier::with([
             'dierfotos',
             'oppastijds' => function($query) {
                 $query->orderBy('datum')->orderBy('start');
             }])->find($id);
-        return view('pet-profile', compact('huisdier'));
+        return view('pet-profile', compact('huisdier', 'user'));
     }
 
 
