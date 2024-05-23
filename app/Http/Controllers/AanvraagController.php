@@ -55,11 +55,10 @@ class AanvraagController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(aanvraag $aanvraag)
+    public function show(int $id)
     {
-
-
-        return view('aanvraag');
+        $aanvraag = Aanvraag::find($id);
+        return view('aanvraag', compact('aanvraag'));
     }
 
     /**
