@@ -49,7 +49,7 @@ class AanvraagController extends Controller
         $aanvraag->oppastijds()->sync($selectedOppastijdIds);
 
         // Redirect naar de volgende pagina met de aanvraag ID
-        return redirect()->route('aanvragen.show', ['id' => $aanvraag->id]);
+        return redirect()->route('pet.show', ['id' => $huisdier->id]);
     }
 
     /**
@@ -64,7 +64,7 @@ class AanvraagController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(aanvraag $aanvraag)
+    public function edit(Aanvraag $aanvraag)
     {
         //
     }
@@ -72,7 +72,7 @@ class AanvraagController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, aanvraag $aanvraag)
+    public function update(Request $request, Aanvraag $aanvraag)
     {
         //
     }
@@ -80,7 +80,7 @@ class AanvraagController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(aanvraag $aanvraag)
+    public function destroy(Aanvraag $aanvraag)
     {
         //
     }
