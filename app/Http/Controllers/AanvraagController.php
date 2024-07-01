@@ -41,7 +41,7 @@ class AanvraagController extends Controller
         ]);
 
         // Verzamel de geselecteerde oppastijd-IDs
-        $selectedOppastijdIds = array_filter(array_column($validated['tijden'], 'id'), function($tijd) {
+        $selectedOppastijdIds = array_column(array_filter($validated['tijden'], function($tijd) {
             return isset($tijd['selected']);
         }), 'id');
 
