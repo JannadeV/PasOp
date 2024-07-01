@@ -43,13 +43,13 @@ class AanvraagController extends Controller
         // Verzamel de geselecteerde oppastijd-IDs
         $selectedOppastijdIds = array_filter(array_column($validated['tijden'], 'id'), function($tijd) {
             return isset($tijd['selected']);
-        });
+        }), 'id');
 
         // Koppel de geselecteerde oppastijden aan de aanvraag
         $aanvraag->oppastijds()->sync($selectedOppastijdIds);
 
-        // Redirect naar de volgende pagina met de aanvraag ID
-        return redirect()->route('pet.show', ['id' => $huisdier->id]);
+        // Redirect to the next page with the aanvraag ID
+        return redirect()->route('aanvragen.show', ['id' => $aanvraag->id]);
     }
 
     /**
