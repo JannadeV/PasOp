@@ -57,12 +57,15 @@ class AanvraagController extends Controller
      */
     public function show(int $id)
     {
-        $aanvraag = Aanvraag::with([
-            'oppastijds' => function($query) {
-                $query->orderBy('datum')->orderBy('start');
-            }
-        ])->find($id);
-        return view('aanvraag', compact('aanvraag'));
+        // Fetch aanvraag by id
+        $aanvraag = Aanvraag::find($id);
+        if ($aanvraag) {
+            // Pass the aanvraagdata to the view
+            return view('aanvraag', compact('aanvraag'));
+        } else {
+            // Handle the case where the aanvraag is not found
+            return redirect()->route('aanvragen.index')->with('error', 'Aanvraag not found.');
+        }
     }
 
     /**
