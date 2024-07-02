@@ -15,4 +15,8 @@ class Dierfoto extends Foto
     {
         return $this->belongsTo(Huisdier::class);
     }
+
+    protected $fillable = [
+        'huisdier_id'
+    ];
 }

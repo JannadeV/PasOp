@@ -1,22 +1,35 @@
-<div {{ $attributes->merge(['class' => 'relative w-full', 'data-carousel' => 'static']) }}>
-    <div class="relative h-full overflow-hidden rounded-lg md:h-96">
+<div {{ $attributes->merge(['class' => 'relative w-full', 'id' => 'default-carousel', 'data-carousel' => 'static']) }}>
+    <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
         @foreach($fotos as $index => $foto)
-        @if($index == 0 )
-            <div class="duration-700 ease-in-out" data-carousel-item="active">
-                <img src={{ asset($foto->path) }} class="object-cover absolute -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+            <div class="{{ $index == 0 ? 'duration-700 ease-in-out' : 'hidden duration-700 ease-in-out' }}"
+                 data-carousel-item="{{ $index == 0 ? 'active' : '' }}">
+                <img src="{{ asset($foto->path) }}" class="w-full h-full object-cover" alt="foto van het dier">
             </div>
-        @else
-            <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                <img src="{{ asset($foto->path) }}" class="object-cover absolute -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-            </div>
-        @endif
         @endforeach
+
+        @if($baasje == $user)
+            <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                <form method="POST"
+                      action="{{ route('dierfotos.store') }}"
+                      enctype="multipart/form-data"
+                      class="absolute w-full h-full flex items-center justify-center">
+                    @csrf
+                    <label for="myfile">Selecteer een bestand: <br></label>
+                    <input type="file" id="myfile" name="dierfoto">
+                    <input type="hidden" name="huisdierId" value="{{ $huisdier->id }}">
+                    <x-secondary-button type="submit">Voeg toe</x-secondary-button>
+                </form>
+            </div>
+            @php($carousselAmount = count($fotos) + 1)
+        @else
+            @php($carousselAmount = count($fotos))
+        @endif
     </div>
 
     <!-- Slider indicators -->
     <div class="absolute z-30 flex -translate-x-1/2 space-x-3 rtl:space-x-reverse bottom-5 left-1/2">
         @php($aria_current = true)
-        @for($i=0; $i<count($fotos); $i++ )
+        @for($i=0; $i<$carousselAmount; $i++)
             <button type="button" class="w-3 h-3 rounded-full" aria-current="{{ $aria_current }}" aria-label="Slide {{$i + 1}}" data-carousel-slide-to="{{ $i }}"></button>
             @php($aria_current = false)
         @endfor

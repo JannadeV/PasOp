@@ -31,7 +31,7 @@
         </h2>
     </x-slot>
     <div class="grid grid-cols-12">
-        <x-image-carousel :fotos="$huisdier->dierfotos" class="col-start-1 col-end-13 h-72"></x-image-carousel>
+        <x-image-carousel :fotos="$huisdier->dierfotos" :baasje="$huisdier->baasje" :user="$user" :huisdier="$huisdier" class="col-start-1 col-end-13 h-72"></x-image-carousel>
         <p class="col-start-2 col-end-12 pt-2">Bio Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vel lectus ac tellus tincidunt suscipit sit amet ac sapien.</p>
         @if ($huisdier->baasje == $user)
             <x-secondary-button class="col-start-2 col-end-12 mt-3 w-max">Pas aan</x-secondary-button>
