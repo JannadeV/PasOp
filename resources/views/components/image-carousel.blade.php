@@ -12,9 +12,9 @@
                 <form method="POST"
                       action="{{ route('dierfotos.store') }}"
                       enctype="multipart/form-data"
-                      class="absolute w-full h-full flex items-center justify-center">
+                      class="absolute w-20 h-full flex items-center justify-center">
                     @csrf
-                    <label for="myfile">Selecteer een bestand: <br></label>
+                    <label for="myfile">Selecteer een bestand: </label>
                     <input type="file" id="myfile" name="dierfoto">
                     <input type="hidden" name="huisdierId" value="{{ $huisdier->id }}">
                     <x-secondary-button type="submit">Voeg toe</x-secondary-button>
