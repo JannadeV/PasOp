@@ -5,15 +5,14 @@ use App\Http\Controllers\DierfotoController;
 use App\Http\Controllers\FotoController;
 use App\Http\Controllers\HuisdierController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [UserController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::controller(HuisdierController::class)->group(function () {
     Route::get('/overview', 'index');
@@ -24,9 +23,9 @@ Route::resource('dierfotos', DierfotoController::class);
 Route::post('/upload', [FotoController::class, 'store']);
 
 Route::controller(AanvraagController::class)->group(function() {
-    Route::post('/aanvragen', 'store')->name('aanvragen.store');
     Route::get('/aanvragen', 'index')->name('aanvragen.index');
     Route::get('/aanvragen/{id}', 'show')->middleware(['auth', 'verified'])->name('aanvragen.show');
+    Route::post('/aanvragen', 'store')->name('aanvragen.store');
 });
 
 Route::middleware('auth')->group(function () {
