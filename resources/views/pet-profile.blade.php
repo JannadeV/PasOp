@@ -34,7 +34,7 @@
         <x-image-carousel :fotos="$huisdier->dierfotos" :baasje="$huisdier->baasje" :user="$user" :huisdier="$huisdier" class="col-start-1 col-end-13 h-72"></x-image-carousel>
         <p class="col-start-2 col-end-12 pt-2">Bio Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vel lectus ac tellus tincidunt suscipit sit amet ac sapien.</p>
         @if ($huisdier->baasje == $user)
-            <x-secondary-button class="col-start-2 col-end-12 mt-3 w-max">Pas aan</x-secondary-button>
+            <x-button.secondary-button class="col-start-2 col-end-12 mt-3 w-max">Pas aan</x-button.secondary-button>
         @else
             <p class="col-start-2 col-end-12 pt-1 font-bold">Oppastijden</p>
             <div class="col-start-2 col-end-12 flex flex-col border border-gray-300 rounded-lg dark:bg-gray-700 dark:border-gray-600">
@@ -57,7 +57,7 @@
                             </div>
                         </div>
                     @endforeach
-                    <x-primary-button type="submit" class="justify-self-center self-center m-1">Pas op!</x-primary-button>
+                    <x-button.primary-button type="submit" class="justify-self-center self-center m-1">Pas op!</x-button.primary-button>
                 </form>
             </div>
         @endif

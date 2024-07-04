@@ -17,7 +17,7 @@
                     <label for="myfile">Selecteer een bestand: </label>
                     <input type="file" id="myfile" name="dierfoto">
                     <input type="hidden" name="huisdierId" value="{{ $huisdier->id }}">
-                    <x-secondary-button type="submit">Voeg toe</x-secondary-button>
+                    <x-button.secondary-button type="submit">Voeg toe</x-button.secondary-button>
                 </form>
             </div>
             @php($carousselAmount = count($fotos) + 1)

@@ -11,7 +11,7 @@
                 <h2 class="text-lg">{{ $aanvraag->oppastijds[0]->huisdier->naam }}</h2>
                 <p>Bio</p>
                 <a href="{{ route('pet.show', ['id' => $aanvraag->oppastijds[0]->huisdier->id]) }}">
-                    <x-primary-button>Profiel</x-primary-button>
+                    <x-button.primary-button>Profiel</x-button.primary-button>
                 </a>
             </div>
             <div class="w-44 grid grid-rows-3 grid-flow-col gap-1 items-center">
@@ -52,7 +52,7 @@
                         <p class="-top-28 relative">.</p>
                     @endif
                 @endif
-                <x-danger-button class="-top-28 relative">Afbreken</x-danger-button>
+                <x-button.danger-button class="-top-28 relative">Afbreken</x-button.danger-button>
             </div>
         </div>
     </div>
