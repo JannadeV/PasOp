@@ -14,9 +14,24 @@ class UserController extends Controller
         $huisdieren = $user->huisdiers;
 
         $aanvragen = Aanvraag::whereHas('oppastijds.huisdier', function ($query) use ($user) {
-            $query->where('baasje_id', $user->id);
+            $query->where('baasje_id', $user->id)
+                  ->where('antwoord', -1);
         })->with(['huisfotos', 'oppastijds.huisdier', 'oppasser'])->get();
 
-        return view('dashboard', compact('huisdieren', 'aanvragen'));
+        $afspraken = Aanvraag::where(function($query) use ($user) {
+            $query->whereHas('oppastijds.huisdier', function($subQuery) use ($user) {
+                $subQuery->where('baasje_id', $user->id);
+            })->orWhere('oppasser_id', $user->id);
+        })->where('antwoord', 1)
+          ->with(['huisfotos', 'oppastijds.huisdier', 'oppasser'])
+          ->get();
+
+        $aangeboden = Aanvraag::whereHas('oppastijds.huisdier', function($query) use ($user) {
+            $query->where('oppasser_id', $user->id);
+        })->with(['oppastijds.huisdier'])->get();
+
+        $reviews = $user->reviewsGot;
+
+        return view('dashboard', compact('user', 'huisdieren', 'aanvragen', 'afspraken', 'aangeboden', 'reviews'));
     }
 }
