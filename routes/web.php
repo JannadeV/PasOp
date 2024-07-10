@@ -19,14 +19,12 @@ Route::controller(HuisdierController::class)->group(function () {
     Route::get('/pet/{id}', 'show')->middleware(['auth', 'verified'])->name('pet.show');
 });
 
+Route::middleware(['auth', 'verified'])->group(function() {
+    Route::resource('aanvraag', AanvraagController::class);
+});
+
 Route::resource('dierfotos', DierfotoController::class);
 Route::post('/upload', [FotoController::class, 'store']);
-
-Route::controller(AanvraagController::class)->group(function() {
-    Route::get('/aanvragen', 'index')->name('aanvragen.index');
-    Route::get('/aanvragen/{id}', 'show')->middleware(['auth', 'verified'])->name('aanvragen.show');
-    Route::post('/aanvragen', 'store')->name('aanvragen.store');
-});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

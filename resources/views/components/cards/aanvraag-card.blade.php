@@ -23,7 +23,7 @@
     </x-slot>
 
     <x-slot name="button">
-        <a href="{{ route('aanvragen.show', ['id' => $aanvraag->id]) }}">
+        <a href="{{ route('aanvraag.show', ['aanvraag' => $aanvraag]) }}">
             <x-button.primary-button>Naar aanvraag</x-button.primary-button>
         </a>
     </x-slot>

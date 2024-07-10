@@ -48,8 +48,7 @@ class AanvraagController extends Controller
         // Koppel de geselecteerde oppastijden aan de aanvraag
         $aanvraag->oppastijds()->sync($selectedOppastijdIds);
 
-        // Redirect to the next page with the aanvraag ID
-        return redirect()->route('aanvragen.show', ['id' => $aanvraag->id]);
+        return redirect()->route('aanvraag.show', ['aanvraag' => $aanvraag]);
     }
 
     /**
@@ -63,8 +62,7 @@ class AanvraagController extends Controller
             // Pass the aanvraagdata to the view
             return view('aanvraag', compact('aanvraag'));
         } else {
-            // Handle the case where the aanvraag is not found
-            return redirect()->route('aanvragen.index')->with('error', 'Aanvraag not found.');
+            return redirect()->route('aanvraag.index')->with('error', 'Aanvraag not found.');
         }
     }
 
