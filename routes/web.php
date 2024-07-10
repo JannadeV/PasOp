@@ -15,7 +15,7 @@ Route::get('/', function () {
 Route::get('/dashboard', [UserController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::controller(HuisdierController::class)->group(function () {
-    Route::get('/overview', 'index');
+    Route::get('/overview', 'index')->name('pet.overview');
     Route::get('/pet/{id}', 'show')->middleware(['auth', 'verified'])->name('pet.show');
 });
 

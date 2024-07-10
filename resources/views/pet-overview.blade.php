@@ -8,7 +8,7 @@
     <div class="p-1 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1">
         @foreach ($huisdiers as $huisdier)
         <div class="col-span-1">
-            <x-cards.pet-card :huisdier="$huisdier"/>
+            <x-cards.pet-card :huisdier="$huisdier" :showTimes='true'/>
         </div>
         @endforeach
     </div>

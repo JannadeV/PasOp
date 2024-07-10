@@ -3,22 +3,13 @@
         @foreach($fotos as $index => $foto)
             <div class="{{ $index == 0 ? 'duration-700 ease-in-out' : 'hidden duration-700 ease-in-out' }}"
                  data-carousel-item="{{ $index == 0 ? 'active' : '' }}">
-                <img src="{{ asset($foto->path) }}" class="w-full h-full object-cover" alt="foto van het dier">
+                <img src="{{ asset($foto->path) }}" class="w-full h-full object-cover" alt="foto">
             </div>
         @endforeach
 
-        @if($baasje == $user)
+        @if($addForm)
             <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                <form method="POST"
-                      action="{{ route('dierfotos.store') }}"
-                      enctype="multipart/form-data"
-                      class="absolute w-20 h-full flex items-center justify-center">
-                    @csrf
-                    <label for="myfile">Selecteer een bestand: </label>
-                    <input type="file" id="myfile" name="dierfoto">
-                    <input type="hidden" name="huisdierId" value="{{ $huisdier->id }}">
-                    <x-button.secondary-button type="submit">Voeg toe</x-button.secondary-button>
-                </form>
+                {{$addForm}}
             </div>
             @php($carousselAmount = count($fotos) + 1)
         @else
