@@ -29,13 +29,11 @@ class DierfotoController extends Controller
      */
     public function store(Request $request)
     {
-        // Verwerk de foto met FotoController
         $response = Http::asForm()->post(url('/upload'), [
             'foto' => $request->file('dierfoto')
         ]);
         $path = $response->json('path');
 
-        //Valideer de rest
         $validated = $request->validate([
             'huisdierId' => 'required|integer',
         ]);
