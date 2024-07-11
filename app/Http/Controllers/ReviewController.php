@@ -28,7 +28,18 @@ class ReviewController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'rating' => 'required|integer',
+            'oppasser_id' => 'required|exists:user,id'
+        ]);
+
+        $review = Review::create([
+            'rating' => $validated['rating'],
+            'oppasser_id' => $validated['oppasser_id'],
+            'baasje_id' => auth()->id(),
+        ]);
+
+        return redirect()->route('aanvraag.show', ['aanvraag' => $request->aanvraag]);
     }
 
     /**

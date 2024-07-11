@@ -1,4 +1,28 @@
 <x-app-layout>
+    <style>
+        .star-rating {
+            display: inline-flex;
+            flex-direction: row-reverse; /* Reverses the order to make the first label in HTML the last visually */
+        }
+        .star-rating input[type="radio"] {
+            display: none;
+        }
+        .star-rating label {
+            font-size: 2rem;
+            color: #ddd;
+            cursor: pointer;
+        }
+        .star-rating input[type="radio"]:checked ~ label {
+            color: #f39c12;
+        }
+        .star-rating label:hover,
+        .star-rating label:hover ~ label {
+            color: #f39c12;
+        }
+        .star-rating label:hover ~ label {
+            color: #f39c12;
+        }
+    </style>
     <x-slot name="header">
         <h2 class="font-semibold text-2xl text-gray-800 dark:text-gray-200 leading-tight">
             Oppasaanvraag
@@ -26,7 +50,34 @@
         <div class="relative h-64">
             <div class="flex flex-col h-full place-items-center text-gray-600 space-y-2 py-4 overflow-scroll relative">
                 @if ($aanvraag->antwoord == 1)
-                <p>De oppasafspraak staat vast.</p>
+                    <p>De oppasafspraak staat vast</p>
+                    <p>.</p>
+                    @if ($user != $aanvraag->oppasser)
+                    <div class="text-center">
+                        <form action="{{ route('review.store')}}" method="POST">
+                            @csrf
+                            <div class="form-group">
+                                <p>Laat een review achter van de oppasser</p>
+                                <input type="hidden" name="oppasser_id" value="$aanvraag->oppasser->id">
+                                <input type="hidden" name="aanvraag" value="$aanvraag">
+                                <label for="rating">Rating:</label>
+                                <div class="star-rating">
+                                    <input type="radio" id="star5" name="rating" value="5">
+                                    <label for="star5" class="fa fa-star"></label>
+                                    <input type="radio" id="star4" name="rating" value="4">
+                                    <label for="star4" class="fa fa-star"></label>
+                                    <input type="radio" id="star3" name="rating" value="3">
+                                    <label for="star3" class="fa fa-star"></label>
+                                    <input type="radio" id="star2" name="rating" value="2">
+                                    <label for="star2" class="fa fa-star"></label>
+                                    <input type="radio" id="star1" name="rating" value="1">
+                                    <label for="star1" class="fa fa-star"></label>
+                                </div>
+                            </div>
+                            <x-button.primary-button type="submit" class="btn btn-primary">Submit</x-button.primary-button>
+                        </form>
+                      </div>
+                    @endif
 
                 @else
                 @if (count($aanvraag->oppastijds) > 0)
