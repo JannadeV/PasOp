@@ -21,4 +21,9 @@ class Review extends Model
     {
         return $this->belongsTo(User::class, 'oppasser_id');
     }
+
+    public function aanvraag(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'aanvraag_id');
+    }
 }

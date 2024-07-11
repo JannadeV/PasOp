@@ -65,9 +65,5 @@ class FirstSeeder extends Seeder
             'email' => 'reviewer@example.com',
             'password' => Hash::make('password')
         ]);
-        $oppasser->reviewsGot()->create([
-            'baasje_id' => $reviewer->id,
-            'rating' => '4',
-        ]);
     }
 }
