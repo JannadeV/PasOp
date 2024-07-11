@@ -12,18 +12,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', [UserController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::controller(HuisdierController::class)->group(function () {
-    Route::get('/overview', 'index')->name('pet.overview');
-    Route::get('/pet/{id}', 'show')->middleware(['auth', 'verified'])->name('pet.show');
-});
-
 Route::middleware(['auth', 'verified'])->group(function() {
     Route::resource('aanvraag', AanvraagController::class);
+    Route::resource('dierfotos', DierfotoController::class);
+    Route::resource('huisdier', HuisdierController::class)->except(['index']);
 });
 
-Route::resource('dierfotos', DierfotoController::class);
+Route::controller(HuisdierController::class)->group(function () {
+    Route::get('/overview', 'index')->name('huisdier.overview');
+});
+
+Route::get('/dashboard', [UserController::class, 'dashboard'])
+    ->middleware(['auth', 'verified'])->name('dashboard');
+
 Route::post('/upload', [FotoController::class, 'store']);
 
 Route::middleware('auth')->group(function () {
