@@ -15,6 +15,7 @@ return new class extends Migration
         Schema::table('aanvraags', function (Blueprint $table) {
             $table->dropForeign(['oppastijd_id']);
             $table->dropColumn('oppastijd_id');
+            $table->integer('antwoord')->nullable(false)->default(-1)->change();
         });
     }
 
@@ -25,6 +26,7 @@ return new class extends Migration
     {
         Schema::table('aanvraags', function (Blueprint $table) {
             $table->foreignId('oppastijd_id')->constrained();
+            $table->boolean('antwoord')->nullable()->change();
         });
     }
 };

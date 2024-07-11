@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dierfoto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
-class FotoController extends Controller
+class DierfotoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,19 +29,22 @@ class FotoController extends Controller
      */
     public function store(Request $request)
     {
-        try {
-            $validated = $request->validate([
-                'foto' => 'required|image|mimes:jpeg,jpg,png,gif|max:2048',
-            ]);
+        $response = Http::asForm()->post(url('/upload'), [
+            'foto' => $request->file('dierfoto')
+        ]);
+        $path = $response->json('path');
 
-            $path = $validated['foto']->store('uploads', 'public');
+        $validated = $request->validate([
+            'huisdier' => 'required',
+        ]);
 
-            return response()->json(['path' => $path], 200);
+        $dierfoto = Dierfoto::create([
+            'path' => $path,
+            'huisdier_id' => $validated['huisdier']->id,
+        ]);
+        $dierfoto->huisdier()->sync($request->huisdierId);
 
-        } catch (\Exception $e) {
-            return response()->json(['error' => 'Failed to upload file.'], 500);
-        }
-
+        return redirect()->route('huisdier.show', ['huisdier' => $validated['huisdier']]);
     }
 
     /**

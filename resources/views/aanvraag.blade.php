@@ -10,8 +10,8 @@
                 <img class="col-span-1 row-span-full h-full w-full object-cover rounded-l-lg" src="{{ asset($aanvraag->oppastijds[0]->huisdier->dierfotos[0]->path) }}" alt="Foto van een huisdier" >
                 <h2 class="text-lg">{{ $aanvraag->oppastijds[0]->huisdier->naam }}</h2>
                 <p>Bio</p>
-                <a href="{{ route('pet.show', ['id' => $aanvraag->oppastijds[0]->huisdier->id]) }}">
-                    <x-primary-button>Profiel</x-primary-button>
+                <a href="{{ route('huisdier.show', ['huisdier' => $aanvraag->oppastijds[0]->huisdier]) }}">
+                    <x-button.primary-button>Profiel</x-button.primary-button>
                 </a>
             </div>
             <div class="w-44 grid grid-rows-3 grid-flow-col gap-1 items-center">
@@ -23,37 +23,81 @@
                 @endforeach
             </div>
         </div>
-        <div class="relative h-96">
+        <div class="relative h-64">
             <div class="flex flex-col h-full place-items-center text-gray-600 space-y-2 py-4 overflow-scroll relative">
+                @if ($aanvraag->antwoord == 1)
+                <p>De oppasafspraak staat vast.</p>
+
+                @else
                 @if (count($aanvraag->oppastijds) > 0)
+                    @if($user == $aanvraag->oppasser)
                     <p>De oppasaanvraag is gedaan</p>
+                    <p>.</p>
+                    @endif
+
                     @if (count($aanvraag->huisfotos) == 0)
-                        <p>.</p>
+                        @if ($user == $aanvraag->oppasser)
                         <p>Voeg foto's van uw huis toe zodat het baasje kan bepalen of u op het dier mag passen.</p>
-                    @else
+                        @else
+                        <p>Wacht tot de potentiele oppasser foto's van hun huis opstuurt.</p>
+                        @endif
                         <p>.</p>
+
+                    @else
+                        @if($user == $aanvraag->oppasser)
                         <p>De huisfoto's zijn toegevoegd</p>
+                        @else
+                        <p>Huisfoto's van de oppasser: </p>
+                        @endif
                         <div class="flex flex-row">
                             @foreach ($aanvraag->huisfotos as $huisfoto)
-                                <div>
-                                    <img class="h-28 w-20 object-cover rounded-lg relative" src="{{ asset($huisfoto->path) }}" alt="Foto van een huis">
-                                    <div class="h-28 w-20 bg-white bg-opacity-30 hover:bg-opacity-0 rounded-lg relative -top-28"></div>
-                                </div>
+                            <div>
+                                <img class="h-28 w-20 object-cover rounded-lg relative" src="{{ asset($huisfoto->path) }}" alt="Foto van een huis">
+                                <div class="h-28 w-20 bg-white bg-opacity-30 hover:bg-opacity-0 rounded-lg relative -top-28"></div>
+                            </div>
                             @endforeach
                         </div>
-                        <p class="-top-28 relative">.</p>
-                        @if (!$aanvraag->antwoord)
-                            <p class="-top-28 relative text-center">Wacht tot het baasje uw oppasaanvraag beantwoordt.</p>
+                        <p>.</p>
+
+                        @if ($aanvraag->antwoord == -1)
+                            @if($user == $aanvraag->oppasser)
+                            <p>Wacht tot het baasje uw oppasaanvraag beantwoordt.</p>
+                            @else
+                            <p>Vindt u het goed als {{ $aanvraag->oppasser->name }} op uw dier past?</p>
+                            <form method="POST" enctype="multipart/form-data"
+                                  action="{{ route('aanvraag.update', ['aanvraag' => $aanvraag]) }}">
+                                @csrf
+                                @method('PATCH')
+                                <x-button.primary-button type="submit" name="antwoord" value=1>Ja</x-button.primary-button>
+                                <x-button.primary-button type="submit" name="antwoord" value=0>Nee</x-button.primary-button>
+                            </form>
+                            @endif
+
                         @elseif ($aanvraag->antwoord == 0)
-                            <p class="-top-28 relative">Helaas, uw oppasaanvraag is afgekeurd. Probeer het bij een ander dier opnieuw.</p>
-                        @else
-                            <p class="-top-28 relative">Gefeliciteerd! U kunt op de afgesproken tijden op het dier passen.</p>
+                            @if ($user == $aanvraag->oppasser)
+                            <p>Helaas, uw oppasaanvraag is afgekeurd. Probeer het bij een ander dier opnieuw.</p>
+                            <x-button.primary-button onclick="{{ route('huisdier.overview') }}">Aanbod huisdieren</x-button.primary-button>
+                            @else
+                            <p>De oppasaanvraag is afgekeurd.</p>
+                            <form method="POST" enctype="multipart/form-data"
+                                  action="{{ route('aanvraag.update', ['aanvraag' => $aanvraag]) }}">
+                                @csrf
+                                @method('PATCH')
+                                <x-button.primary-button type="submit" name="antwoord" value=-1>Ongedaan maken</x-button.primary-button>
+                            </form>
+                            @endif
                         @endif
-                        <p class="-top-28 relative">.</p>
+
                     @endif
                 @endif
-                <x-danger-button class="-top-28 relative">Afbreken</x-danger-button>
+                @endif
             </div>
         </div>
+        <form method="POST" enctype="multipart/form-data"
+              action="{{ route('aanvraag.update', ['aanvraag' => $aanvraag]) }}">
+            @csrf
+            @method('PATCH')
+            <x-button.danger-button type="submit" name="antwoord" value=0>Afbreken</x-button.danger-button>
+        </form>
     </div>
 </x-app-layout>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Aanvraag;
+use App\Models\Huisdier;
 use Illuminate\Http\Request;
 
 class AanvraagController extends Controller
@@ -18,9 +19,9 @@ class AanvraagController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(int $huisdierId)
+    public function create(Huisdier $huisdier)
     {
-        return redirect()->route('pet.show', ['id' => $huisdierId]);
+        return redirect()->route('huisdier.show', ['huisdier' => $huisdier]);
     }
 
     /**
@@ -28,43 +29,35 @@ class AanvraagController extends Controller
      */
     public function store(Request $request)
     {
-        // Valideer de input
         $validated = $request->validate([
             'tijden' => 'required|array',
             'tijden.*.id' => 'required|exists:oppastijds,id',
             'tijden.*.selected' => 'nullable|boolean'
         ]);
 
-        // Maak een nieuwe aanvraag
         $aanvraag = Aanvraag::create([
             'oppasser_id' => auth()->id(),
         ]);
 
-        // Verzamel de geselecteerde oppastijd-IDs
         $selectedOppastijdIds = array_column(array_filter($validated['tijden'], function($tijd) {
             return isset($tijd['selected']);
         }), 'id');
-
-        // Koppel de geselecteerde oppastijden aan de aanvraag
         $aanvraag->oppastijds()->sync($selectedOppastijdIds);
 
-        // Redirect to the next page with the aanvraag ID
-        return redirect()->route('aanvragen.show', ['id' => $aanvraag->id]);
+        return redirect()->route('aanvraag.show', ['aanvraag' => $aanvraag]);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(int $id)
+    public function show(Aanvraag $aanvraag)
     {
-        // Fetch aanvraag by id
-        $aanvraag = Aanvraag::find($id);
+        $user = auth()->user();
+
         if ($aanvraag) {
-            // Pass the aanvraagdata to the view
-            return view('aanvraag', compact('aanvraag'));
+            return view('aanvraag', compact('aanvraag', 'user'));
         } else {
-            // Handle the case where the aanvraag is not found
-            return redirect()->route('aanvragen.index')->with('error', 'Aanvraag not found.');
+            return redirect()->route('aanvraag.index')->with('error', 'Aanvraag not found.');
         }
     }
 
@@ -81,7 +74,19 @@ class AanvraagController extends Controller
      */
     public function update(Request $request, Aanvraag $aanvraag)
     {
-        //
+        $validated = $request->validate([
+            'oppastijds' => 'sometimes|array',
+            'oppastijds.*.id' => 'sometimes|exists:oppastijds,id',
+            'oppasser' => 'sometimes|exists:users,id',
+            'huisfotos' => 'sometimes|array',
+            'huisfotos.*' => 'sometimes|image|mimes:jpeg,jpg,png,gif|max:2048',
+            'huisfotos.*.id' => 'sometimes|exists:huisfotos,id',
+            'antwoord' => 'sometimes|integer'
+        ]);
+
+        $aanvraag->update($validated);
+
+        return redirect()->route('aanvraag.show', ['aanvraag' => $aanvraag]);
     }
 
     /**

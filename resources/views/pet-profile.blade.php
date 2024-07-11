@@ -30,15 +30,34 @@
             {{ $huisdier->naam }}
         </h2>
     </x-slot>
+    
     <div class="grid grid-cols-12">
-        <x-image-carousel :fotos="$huisdier->dierfotos" class="col-start-1 col-end-13 h-72"></x-image-carousel>
+        <x-image-carousel
+            :fotos="$huisdier->dierfotos"
+            :huisdier="$huisdier"
+            :showAdd="$huisdier->baasje == $user"
+            class="col-start-1 col-end-13 h-72">
+            <x-slot name="addForm">
+                <form method="POST"
+                      action="{{ route('dierfotos.store') }}"
+                      enctype="multipart/form-data"
+                      class="absolute w-20 h-full flex items-center justify-center">
+                    @csrf
+                    <label for="myfile">Selecteer een bestand: </label>
+                    <input type="file" id="myfile" name="dierfoto">
+                    <input type="hidden" name="huisdier" value="{{ $huisdier }}">
+                    <x-button.secondary-button type="submit">Voeg toe</x-button.secondary-button>
+                </form>
+            </x-slot>
+        </x-image-carousel>
+        <!--TODO: BIO toevoegen voor hieronder-->
         <p class="col-start-2 col-end-12 pt-2">Bio Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vel lectus ac tellus tincidunt suscipit sit amet ac sapien.</p>
         @if ($huisdier->baasje == $user)
-            <x-secondary-button class="col-start-2 col-end-12 mt-3 w-max">Pas aan</x-secondary-button>
+            <x-button.secondary-button class="col-start-2 col-end-12 mt-3 w-max">Pas aan</x-button.secondary-button>
         @else
             <p class="col-start-2 col-end-12 pt-1 font-bold">Oppastijden</p>
             <div class="col-start-2 col-end-12 flex flex-col border border-gray-300 rounded-lg dark:bg-gray-700 dark:border-gray-600">
-                <form onsubmit="return validateForm()" action="{{ route('aanvragen.store') }}" method="POST" class="grid grid-cols-1 dark:text-white border-b border-gray-300">
+                <form onsubmit="return validateForm()" action="{{ route('aanvraag.store') }}" method="POST" class="grid grid-cols-1 dark:text-white border-b border-gray-300">
                     @csrf
                     @foreach($huisdier->oppastijds as $index=>$oppastijd)
                         @if($index%2 == 0)
@@ -57,7 +76,7 @@
                             </div>
                         </div>
                     @endforeach
-                    <x-primary-button type="submit" class="justify-self-center self-center m-1">Pas op!</x-primary-button>
+                    <x-button.primary-button type="submit" class="justify-self-center self-center m-1">Pas op!</x-button.primary-button>
                 </form>
             </div>
         @endif

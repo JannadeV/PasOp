@@ -33,7 +33,7 @@ class FirstSeeder extends Seeder
             'path' => 'img/yuri_trein.png'
         ]);
         $yuri->dierfotos()->create([
-            'path' => 'img/yuri_bos.png'
+            'path' => 'img/yuri_bos.jpg'
         ]);
 
         $yuri->oppastijds()->create([
