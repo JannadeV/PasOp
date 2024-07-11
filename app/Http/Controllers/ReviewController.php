@@ -30,7 +30,7 @@ class ReviewController extends Controller
     {
         $validated = $request->validate([
             'rating' => 'required|integer',
-            'oppasser_id' => 'required|exists:user,id'
+            'oppasser_id' => 'required|exists:users,id'
         ]);
 
         $review = Review::create([

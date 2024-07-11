@@ -23,16 +23,22 @@
             color: #f39c12;
         }
     </style>
+
     <x-slot name="header">
         <h2 class="font-semibold text-2xl text-gray-800 dark:text-gray-200 leading-tight">
             Oppasaanvraag
         </h2>
     </x-slot>
+
     <div>
         <div class="flex flex-row items-stretch bg-gray-200 w-screen space-x-2 p-2">
             <div class="grid grid-cols-2 grid-rows-3 place-items-center bg-gray-100 border border-solid border-gray-300 rounded-lg">
-                <img class="col-span-1 row-span-full h-full w-full object-cover rounded-l-lg" src="{{ asset($aanvraag->oppastijds[0]->huisdier->dierfotos[0]->path) }}" alt="Foto van een huisdier" >
-                <h2 class="text-lg">{{ $aanvraag->oppastijds[0]->huisdier->naam }}</h2>
+                <img class="col-span-1 row-span-full h-full w-full object-cover rounded-l-lg"
+                     src="{{ asset($aanvraag->oppastijds[0]->huisdier->dierfotos[0]->path) }}"
+                     alt="Foto van een huisdier" >
+                <h2 class="text-lg">
+                    {{ $aanvraag->oppastijds[0]->huisdier->naam }}
+                </h2>
                 <p>Bio</p>
                 <a href="{{ route('huisdier.show', ['huisdier' => $aanvraag->oppastijds[0]->huisdier]) }}">
                     <x-button.primary-button>Profiel</x-button.primary-button>
@@ -41,8 +47,12 @@
             <div class="w-44 grid grid-rows-3 grid-flow-col gap-1 items-center">
                 @foreach ($aanvraag->oppastijds as $oppastijd)
                     <div class="w-28 self-center border border-solid border-gray-300 rounded-lg p-2 bg-gray-100">
-                        <p class="text-center leading-tight">{{ date("d-m-'y", strtotime($oppastijd->datum)) }}</p>
-                        <p class="text-sm text-center leading-tight">{{ substr($oppastijd->start, 0, 5) }} - {{ substr($oppastijd->eind, 0, 5) }}</p>
+                        <p class="text-center leading-tight">
+                            {{ date("d-m-'y", strtotime($oppastijd->datum)) }}
+                        </p>
+                        <p class="text-sm text-center leading-tight">
+                            {{ substr($oppastijd->start, 0, 5) }} - {{ substr($oppastijd->eind, 0, 5) }}
+                        </p>
                     </div>
                 @endforeach
             </div>
@@ -54,7 +64,7 @@
                     <p>.</p>
                     @if ($user != $aanvraag->oppasser)
                     <div class="text-center">
-                        <form action="{{ route('review.store')}}" method="POST">
+                        <form action="{{ route('review.store') }}" method="POST">
                             @csrf
                             <div class="form-group">
                                 <p>Laat een review achter van de oppasser</p>
@@ -74,7 +84,7 @@
                                     <label for="star1" class="fa fa-star"></label>
                                 </div>
                             </div>
-                            <x-button.primary-button type="submit" class="btn btn-primary">Submit</x-button.primary-button>
+                            <x-button.primary-button type="submit">Submit</x-button.primary-button>
                         </form>
                       </div>
                     @endif
@@ -103,7 +113,9 @@
                         <div class="flex flex-row">
                             @foreach ($aanvraag->huisfotos as $huisfoto)
                             <div>
-                                <img class="h-28 w-20 object-cover rounded-lg relative" src="{{ asset($huisfoto->path) }}" alt="Foto van een huis">
+                                <img class="h-28 w-20 object-cover rounded-lg relative"
+                                     src="{{ asset($huisfoto->path) }}"
+                                     alt="Foto van een huis">
                                 <div class="h-28 w-20 bg-white bg-opacity-30 hover:bg-opacity-0 rounded-lg relative -top-28"></div>
                             </div>
                             @endforeach
@@ -119,22 +131,30 @@
                                   action="{{ route('aanvraag.update', ['aanvraag' => $aanvraag]) }}">
                                 @csrf
                                 @method('PATCH')
-                                <x-button.primary-button type="submit" name="antwoord" value=1>Ja</x-button.primary-button>
-                                <x-button.primary-button type="submit" name="antwoord" value=0>Nee</x-button.primary-button>
+                                <x-button.primary-button type="submit" name="antwoord" value=1>
+                                    Ja
+                                </x-button.primary-button>
+                                <x-button.primary-button type="submit" name="antwoord" value=0>
+                                    Nee
+                                </x-button.primary-button>
                             </form>
                             @endif
 
                         @elseif ($aanvraag->antwoord == 0)
                             @if ($user == $aanvraag->oppasser)
                             <p>Helaas, uw oppasaanvraag is afgekeurd. Probeer het bij een ander dier opnieuw.</p>
-                            <x-button.primary-button onclick="{{ route('huisdier.overview') }}">Aanbod huisdieren</x-button.primary-button>
+                            <x-button.primary-button onclick="{{ route('huisdier.overview') }}">
+                                Aanbod huisdieren
+                            </x-button.primary-button>
                             @else
                             <p>De oppasaanvraag is afgekeurd.</p>
                             <form method="POST" enctype="multipart/form-data"
                                   action="{{ route('aanvraag.update', ['aanvraag' => $aanvraag]) }}">
                                 @csrf
                                 @method('PATCH')
-                                <x-button.primary-button type="submit" name="antwoord" value=-1>Ongedaan maken</x-button.primary-button>
+                                <x-button.primary-button type="submit" name="antwoord" value=-1>
+                                    Ongedaan maken
+                                </x-button.primary-button>
                             </form>
                             @endif
                         @endif
