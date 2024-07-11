@@ -35,16 +35,16 @@ class DierfotoController extends Controller
         $path = $response->json('path');
 
         $validated = $request->validate([
-            'huisdierId' => 'required|integer',
+            'huisdier' => 'required',
         ]);
 
         $dierfoto = Dierfoto::create([
             'path' => $path,
-            'huisdier_id' => $validated['huisdierId'],
+            'huisdier_id' => $validated['huisdier']->id,
         ]);
         $dierfoto->huisdier()->sync($request->huisdierId);
 
-        return redirect()->route('pet.show', ['id' => $validated['huisdierId']]);
+        return redirect()->route('huisdier.show', ['huisdier' => $validated['huisdier']]);
     }
 
     /**

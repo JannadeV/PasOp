@@ -30,6 +30,7 @@
             {{ $huisdier->naam }}
         </h2>
     </x-slot>
+    
     <div class="grid grid-cols-12">
         <x-image-carousel
             :fotos="$huisdier->dierfotos"
@@ -44,7 +45,7 @@
                     @csrf
                     <label for="myfile">Selecteer een bestand: </label>
                     <input type="file" id="myfile" name="dierfoto">
-                    <input type="hidden" name="huisdierId" value="{{ $huisdier->id }}">
+                    <input type="hidden" name="huisdier" value="{{ $huisdier }}">
                     <x-button.secondary-button type="submit">Voeg toe</x-button.secondary-button>
                 </form>
             </x-slot>

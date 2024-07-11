@@ -10,7 +10,7 @@
                 <img class="col-span-1 row-span-full h-full w-full object-cover rounded-l-lg" src="{{ asset($aanvraag->oppastijds[0]->huisdier->dierfotos[0]->path) }}" alt="Foto van een huisdier" >
                 <h2 class="text-lg">{{ $aanvraag->oppastijds[0]->huisdier->naam }}</h2>
                 <p>Bio</p>
-                <a href="{{ route('pet.show', ['id' => $aanvraag->oppastijds[0]->huisdier->id]) }}">
+                <a href="{{ route('huisdier.show', ['huisdier' => $aanvraag->oppastijds[0]->huisdier]) }}">
                     <x-button.primary-button>Profiel</x-button.primary-button>
                 </a>
             </div>
@@ -76,7 +76,7 @@
                         @elseif ($aanvraag->antwoord == 0)
                             @if ($user == $aanvraag->oppasser)
                             <p>Helaas, uw oppasaanvraag is afgekeurd. Probeer het bij een ander dier opnieuw.</p>
-                            <x-button.primary-button onclick="{{ route('pet.overview') }}">Aanbod huisdieren</x-button.primary-button>
+                            <x-button.primary-button onclick="{{ route('huisdier.overview') }}">Aanbod huisdieren</x-button.primary-button>
                             @else
                             <p>De oppasaanvraag is afgekeurd.</p>
                             <form method="POST" enctype="multipart/form-data"

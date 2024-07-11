@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Aanvraag;
+use App\Models\Huisdier;
 use Illuminate\Http\Request;
 
 class AanvraagController extends Controller
@@ -18,9 +19,9 @@ class AanvraagController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(int $huisdierId)
+    public function create(Huisdier $huisdier)
     {
-        return redirect()->route('pet.show', ['id' => $huisdierId]);
+        return redirect()->route('huisdier.show', ['huisdier' => $huisdier]);
     }
 
     /**

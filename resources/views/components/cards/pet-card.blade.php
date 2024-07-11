@@ -44,8 +44,10 @@
 
     <x-slot name="button">
         @auth
-        <a href="{{ route('pet.show', ['id' => $huisdier->id]) }}">
-            <x-button.primary-button class="justify-self-end">Naar profiel</x-button.primary-button>
+        <a href="{{ route('huisdier.show', ['huisdier' => $huisdier]) }}">
+            <x-button.primary-button class="justify-self-end">
+                Naar profiel
+            </x-button.primary-button>
         </a>
         @endauth
         @guest
