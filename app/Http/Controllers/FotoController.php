@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\foto;
 use Illuminate\Http\Request;
 
 class FotoController extends Controller
@@ -28,7 +27,19 @@ class FotoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $validated = $request->validate([
+                'foto' => 'required|image|mimes:jpeg,jpg,png,gif|max:2048',
+            ]);
+
+            $path = $validated['foto']->store('uploads', 'public');
+
+            return response()->json(['path' => $path], 200);
+
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Failed to upload file.'], 500);
+        }
+
     }
 
     /**

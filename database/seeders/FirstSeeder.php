@@ -11,6 +11,7 @@ use App\Models\Oppastijd;
 use App\Models\Review;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class FirstSeeder extends Seeder
 {
@@ -18,31 +19,38 @@ class FirstSeeder extends Seeder
      * Run the database seeds.
      */
     public function run(): void
-    {        
+    {
         $baasje = User::factory()->create([
             'name' => 'Baasje',
             'email' => 'baasje@example.com',
+            'password' => Hash::make('password')
         ]);
         $yuri = $baasje->huisdiers()->create([
             'naam' => 'Yuri',
             'soort' => 'Hond',
         ]);
         $yuri->dierfotos()->create([
-            'path' => 'yuri_trein.png',
+            'path' => 'img/yuri_trein.png'
+        ]);
+        $yuri->dierfotos()->create([
+            'path' => 'img/yuri_bos.jpg'
         ]);
 
         $yuri->oppastijds()->create([
-            'start' => '2024-04-18 15:00:00',
-            'eind' => '2024-04-18 22:30:00',
+            'datum' => '2024-04-19',
+            'start' => '15:00',
+            'eind' => '22:30',
         ]);
         $oppastijd = $yuri->oppastijds()->create([
-            'start' => '2024-04-18 7:30:00',
-            'eind' => '2024-04-18 13:00:00',
+            'datum' => '2024-05-18',
+            'start' => '7:30',
+            'eind' => '13:00',
         ]);
 
         $oppasser = User::factory()->create([
             'name' => 'Oppasser',
             'email' => 'oppasser@example.com',
+            'password' => Hash::make('password')
         ]);
 
         $aanvraag = $oppastijd->aanvraags()->create([
@@ -55,10 +63,7 @@ class FirstSeeder extends Seeder
         $reviewer = User::factory()->create([
             'name' => 'Reviewer',
             'email' => 'reviewer@example.com',
-        ]);
-        $oppasser->reviewsGot()->create([
-            'baasje_id' => $reviewer->id,
-            'rating' => '4',
+            'password' => Hash::make('password')
         ]);
     }
 }

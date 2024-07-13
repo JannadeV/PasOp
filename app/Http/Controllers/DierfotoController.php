@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\review;
+use App\Models\Dierfoto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
-class ReviewController extends Controller
+class DierfotoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -28,26 +29,28 @@ class ReviewController extends Controller
      */
     public function store(Request $request)
     {
+        $response = Http::asForm()->post(url('/upload'), [
+            'foto' => $request->file('dierfoto')
+        ]);
+        $path = $response->json('path');
+
         $validated = $request->validate([
-            'rating' => 'required|integer',
-            'oppasser_id' => 'required|exists:users,id',
-            'aanvraag_id' => 'required|exists:aanvraags,id'
+            'huisdier' => 'required',
         ]);
 
-        $review = Review::create([
-            'rating' => $validated['rating'],
-            'oppasser_id' => $validated['oppasser_id'],
-            'aanvraag_id' => $validated['aanvraag_id'],
-            'baasje_id' => auth()->id(),
+        $dierfoto = Dierfoto::create([
+            'path' => $path,
+            'huisdier_id' => $validated['huisdier']->id,
         ]);
+        $dierfoto->huisdier()->sync($request->huisdierId);
 
-        return redirect()->route('aanvraag.show', ['aanvraag' => $validated['aanvraag_id']]);
+        return redirect()->route('huisdier.show', ['huisdier' => $validated['huisdier']]);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(review $review)
+    public function show(foto $foto)
     {
         //
     }
@@ -55,7 +58,7 @@ class ReviewController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(review $review)
+    public function edit(foto $foto)
     {
         //
     }
@@ -63,7 +66,7 @@ class ReviewController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, review $review)
+    public function update(Request $request, foto $foto)
     {
         //
     }
@@ -71,7 +74,7 @@ class ReviewController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(review $review)
+    public function destroy(foto $foto)
     {
         //
     }
