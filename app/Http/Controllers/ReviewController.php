@@ -30,16 +30,18 @@ class ReviewController extends Controller
     {
         $validated = $request->validate([
             'rating' => 'required|integer',
-            'oppasser_id' => 'required|exists:users,id'
+            'oppasser_id' => 'required|exists:users,id',
+            'aanvraag_id' => 'required|exists:aanvraags,id'
         ]);
 
         $review = Review::create([
             'rating' => $validated['rating'],
             'oppasser_id' => $validated['oppasser_id'],
+            'aanvraag_id' => $validated['aanvraag_id'],
             'baasje_id' => auth()->id(),
         ]);
 
-        return redirect()->route('aanvraag.show', ['aanvraag' => $request->aanvraag]);
+        return redirect()->route('aanvraag.show', ['aanvraag' => $validated['aanvraag_id']]);
     }
 
     /**

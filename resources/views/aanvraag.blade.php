@@ -62,14 +62,15 @@
                 @if ($aanvraag->antwoord == 1)
                     <p>De oppasafspraak staat vast</p>
                     <p>.</p>
-                    @if ($user != $aanvraag->oppasser)
+                    <p>"{{$aanvraag->review}}"</p>
+                    @if ($user != $aanvraag->oppasser && $aanvraag->review == null)
                     <div class="text-center">
                         <form action="{{ route('review.store') }}" method="POST">
                             @csrf
                             <div class="form-group">
                                 <p>Laat een review achter van de oppasser</p>
                                 <input type="hidden" name="oppasser_id" value="$aanvraag->oppasser->id">
-                                <input type="hidden" name="aanvraag" value="$aanvraag">
+                                <input type="hidden" name="aanvraag_id" value="$aanvraag->id">
                                 <label for="rating">Rating:</label>
                                 <div class="star-rating">
                                     <input type="radio" id="star5" name="rating" value="5">

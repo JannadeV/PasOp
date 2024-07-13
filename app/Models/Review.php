@@ -26,4 +26,11 @@ class Review extends Model
     {
         return $this->belongsTo(User::class, 'aanvraag_id');
     }
+
+    protected $fillable = [
+        'baasje_id',
+        'oppasser_id',
+        'aanvraag_id',
+        'rating'
+    ];
 }
