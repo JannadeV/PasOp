@@ -7,9 +7,16 @@
             </div>
         @endforeach
 
-        @if($addForm)
+        @if($showAdd)
             <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                {{$addForm}}
+                <form method="POST"
+                    action="$action"
+                    enctype="multipart/form-data"
+                    class="absolute w-20 h-full flex items-center justify-center">
+                @csrf
+                <label for="myfile">Selecteer een bestand: </label>
+                {{$inputs}}
+                <x-button.secondary-button type="submit">Voeg toe</x-button.secondary-button>
             </div>
             @php($carousselAmount = count($fotos) + 1)
         @else
