@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\review;
 use Illuminate\Http\Request;
 
-class ReviewController extends Controller
+class HuisfotoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -28,26 +27,28 @@ class ReviewController extends Controller
      */
     public function store(Request $request)
     {
+        $response = Http::asForm()->post(url('/upload'), [
+            'foto' => $request->file('huisfoto')
+        ]);
+        $path = $response->json('path');
+
         $validated = $request->validate([
-            'rating' => 'required|integer',
-            'oppasser_id' => 'required|exists:users,id',
-            'aanvraag_id' => 'required|exists:aanvraags,id'
+            'aanvraag' => 'required',
         ]);
 
-        $review = Review::create([
-            'rating' => $validated['rating'],
-            'oppasser_id' => $validated['oppasser_id'],
-            'aanvraag_id' => $validated['aanvraag_id'],
-            'baasje_id' => auth()->id(),
+        $dierfoto = Huisfoto::create([
+            'path' => $path,
+            'aanvraag_id' => $validated['aanvraag']->id,
         ]);
+        $huisfoto->aanvraag()->sync('aanvraag_id');
 
-        return redirect()->route('aanvraag.show', ['aanvraag' => $validated['aanvraag_id']]);
+        return redirect()->route('aanvraag.show', ['aanvraag' => $validated['aanvraag']]);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(review $review)
+    public function show(string $id)
     {
         //
     }
@@ -55,7 +56,7 @@ class ReviewController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(review $review)
+    public function edit(string $id)
     {
         //
     }
@@ -63,7 +64,7 @@ class ReviewController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, review $review)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -71,7 +72,7 @@ class ReviewController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(review $review)
+    public function destroy(string $id)
     {
         //
     }

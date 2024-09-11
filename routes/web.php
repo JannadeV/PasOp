@@ -4,7 +4,9 @@ use App\Http\Controllers\AanvraagController;
 use App\Http\Controllers\DierfotoController;
 use App\Http\Controllers\FotoController;
 use App\Http\Controllers\HuisdierController;
+use App\Http\Controllers\HuisfotoController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,7 +17,9 @@ Route::get('/', function () {
 Route::middleware(['auth', 'verified'])->group(function() {
     Route::resource('aanvraag', AanvraagController::class);
     Route::resource('dierfotos', DierfotoController::class);
+    Route::resource('huisfotos', HuisfotoController::class);
     Route::resource('huisdier', HuisdierController::class)->except(['index']);
+    Route::resource('review', ReviewController::class);
 });
 
 Route::controller(HuisdierController::class)->group(function () {
