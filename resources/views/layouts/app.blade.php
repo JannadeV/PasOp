@@ -28,7 +28,7 @@
 
             <!-- Page Heading -->
             @if (isset($header))
-                <header class="h-20 bg-white dark:bg-gray-800 shadow">
+                <header class="bg-white dark:bg-gray-800 shadow">
                     <div class="flex flex-row items-center max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                         {{ $header }}
                         @if (Route::has('login'))
