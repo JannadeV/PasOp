@@ -94,6 +94,8 @@ class AanvraagController extends Controller
      */
     public function destroy(Aanvraag $aanvraag)
     {
-        //
+        $aanvraag->delete();
+
+        return redirect()->route('dashboard');
     }
 }

@@ -165,11 +165,20 @@
                 @endif
             </div>
         </div>
+        @if($user == $aanvraag->oppasser)
+        <form method="POST"
+              action="{{ route('aanvraag.destroy', ['aanvraag' => $aanvraag]) }}">
+            @csrf
+            @method('DELETE')
+            <x-button.danger-button type="submit">Annuleren</x-button.danger-button>
+        </form>
+        @elseif($user == $aanvraag->oppastijds[0]->huisdier->baasje)
         <form method="POST" enctype="multipart/form-data"
               action="{{ route('aanvraag.update', ['aanvraag' => $aanvraag]) }}">
             @csrf
             @method('PATCH')
             <x-button.danger-button type="submit" name="antwoord" value=0>Afbreken</x-button.danger-button>
         </form>
+        @endif
     </div>
 </x-app-layout>
