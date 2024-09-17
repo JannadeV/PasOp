@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::table('reviews', function(Blueprint $table) {
             $table->foreignId('aanvraag_id')->constrained();
-            $table->String('text');
         });
     }
 

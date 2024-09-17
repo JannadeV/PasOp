@@ -12,7 +12,7 @@
             color: #ddd;
             cursor: pointer;
         }
-        .star-rating input[type="radio"]:checked ~ label {
+        .star-rating input[type="radio"]:checked ~ label, .star-display {
             color: #f39c12;
         }
         .star-rating label:hover,
@@ -21,6 +21,11 @@
         }
         .star-rating label:hover ~ label {
             color: #f39c12;
+        }
+        .star-display {
+            display: inline-block;
+            margin: 0;
+            padding: 0;
         }
     </style>
 
@@ -62,32 +67,41 @@
                 @if ($aanvraag->antwoord == 1)
                     <p>De oppasafspraak staat vast</p>
                     <p>.</p>
-                    <p>"{{$aanvraag->review}}"</p>
                     @if ($user != $aanvraag->oppasser && $aanvraag->review == null)
                     <div class="text-center">
                         <form action="{{ route('review.store') }}" method="POST">
                             @csrf
-                            <div class="form-group">
-                                <p>Laat een review achter van de oppasser</p>
-                                <input type="hidden" name="oppasser_id" value="$aanvraag->oppasser->id">
-                                <input type="hidden" name="aanvraag_id" value="$aanvraag->id">
-                                <label for="rating">Rating:</label>
-                                <div class="star-rating">
-                                    <input type="radio" id="star5" name="rating" value="5">
-                                    <label for="star5" class="fa fa-star"></label>
-                                    <input type="radio" id="star4" name="rating" value="4">
-                                    <label for="star4" class="fa fa-star"></label>
-                                    <input type="radio" id="star3" name="rating" value="3">
-                                    <label for="star3" class="fa fa-star"></label>
-                                    <input type="radio" id="star2" name="rating" value="2">
-                                    <label for="star2" class="fa fa-star"></label>
-                                    <input type="radio" id="star1" name="rating" value="1">
-                                    <label for="star1" class="fa fa-star"></label>
-                                </div>
+                            <p>Laat een review van de oppasser achter</p>
+                            <input type="hidden" name="oppasser_id" value="{{ $aanvraag->oppasser->id }}">
+                            <input type="hidden" name="aanvraag_id" value="{{ $aanvraag->id }}">
+                            <input type="hidden" name="baasje_id" value="{{ $user->id }}">
+                            <label for="rating">Rating:</label>
+                            <div class="star-rating">
+                                <input type="radio" id="star5" name="rating" value="5">
+                                <label for="star5" class="fa fa-star"></label>
+                                <input type="radio" id="star4" name="rating" value="4">
+                                <label for="star4" class="fa fa-star"></label>
+                                <input type="radio" id="star3" name="rating" value="3">
+                                <label for="star3" class="fa fa-star"></label>
+                                <input type="radio" id="star2" name="rating" value="2">
+                                <label for="star2" class="fa fa-star"></label>
+                                <input type="radio" id="star1" name="rating" value="1">
+                                <label for="star1" class="fa fa-star"></label>
                             </div>
                             <x-button.primary-button type="submit">Submit</x-button.primary-button>
                         </form>
                       </div>
+                    @endif
+                    @if($aanvraag->review != null)
+                    <div class="star-display-container">
+                    <label for="rating">Rating:</label>
+                    @for($i = 0; $i < $aanvraag->review->rating; $i++)
+                        <i class="fa-solid fa-star star-display"></i>
+                    @endfor
+                    @for($i = $aanvraag->review->rating; $i < 5; $i++)
+                        <i class="fa-regular fa-star star-display"></i>
+                    @endfor
+                    </div>
                     @endif
 
                 @else
@@ -165,11 +179,20 @@
                 @endif
             </div>
         </div>
+        @if($user == $aanvraag->oppasser)
+        <form method="POST"
+              action="{{ route('aanvraag.destroy', ['aanvraag' => $aanvraag]) }}">
+            @csrf
+            @method('DELETE')
+            <x-button.danger-button type="submit">Annuleren</x-button.danger-button>
+        </form>
+        @elseif($user == $aanvraag->oppastijds[0]->huisdier->baasje)
         <form method="POST" enctype="multipart/form-data"
               action="{{ route('aanvraag.update', ['aanvraag' => $aanvraag]) }}">
             @csrf
             @method('PATCH')
             <x-button.danger-button type="submit" name="antwoord" value=0>Afbreken</x-button.danger-button>
         </form>
+        @endif
     </div>
 </x-app-layout>
