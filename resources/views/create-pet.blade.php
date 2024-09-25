@@ -28,6 +28,6 @@
         <input type="radio" name="soort" id="vis" value="vis">
         <label for="vis"><i class="fa-solid fa-fish text-gray-700 text-4xl"></i></label>
         <input type="radio" name="soort" id="anders" value="anders">
-        <label for="anders"><i class="fa-solid fa-question text-gray-700 text-4xl"></i></label>
+        <label for="anders"><i class="fa-solid fa-ellipsis text-gray-700 text-4xl"></i></label>
     </form>
 </x-app-layout>
