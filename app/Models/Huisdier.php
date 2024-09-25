@@ -14,7 +14,7 @@ class Huisdier extends Model
     //Get the baasje to this huisdier.
     public function baasje(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'baasje_id');
     }
 
     //Get the oppastijden this huisdier needs to be babysat.
@@ -37,5 +37,6 @@ class Huisdier extends Model
     protected $fillable = [
         'naam',
         'soort',
+        'baasje_id'
     ];
 }
