@@ -13,6 +13,8 @@
 
     <form onsubmit="return validateForm()" action="{{ route('huisdier.store') }}" method="POST">
         @csrf
+        <p>Let op, de informatie die u hier geeft kan niet meer aangepast worden.</p>
+
         <label for="name">Naam: </label>
         <input type="text" id="name" name="name"><br>
 
