@@ -30,7 +30,7 @@
             {{ $huisdier->naam }}
         </h2>
     </x-slot>
-    
+
     <div class="grid grid-cols-12">
         <x-image-carousel
             :fotos="$huisdier->dierfotos"
@@ -38,16 +38,9 @@
             :showAdd="$huisdier->baasje == $user"
             class="col-start-1 col-end-13 h-72">
             <x-slot name="addForm">
-                <form method="POST"
-                      action="{{ route('dierfotos.store') }}"
-                      enctype="multipart/form-data"
-                      class="absolute w-20 h-full flex items-center justify-center">
-                    @csrf
-                    <label for="myfile">Selecteer een bestand: </label>
-                    <input type="file" id="myfile" name="dierfoto">
-                    <input type="hidden" name="huisdier" value="{{ $huisdier }}">
-                    <x-button.secondary-button type="submit">Voeg toe</x-button.secondary-button>
-                </form>
+                <x-input.add-picture :route="route('dierfotos.store')" fotoname="dierfoto">
+                    <x-slot name="connectTo"><input type="hidden" name="huisdier" value="{{ $huisdier }}"></x-slot>
+                </x-input.add-picture>
             </x-slot>
         </x-image-carousel>
         <!--TODO: BIO toevoegen voor hieronder-->
