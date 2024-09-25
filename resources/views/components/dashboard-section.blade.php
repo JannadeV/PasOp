@@ -3,7 +3,9 @@
         <h2 class="text-lg">{{ $header }}</h2>
         <div class="inline-flex items-center">
             @if (isset($action))
-            {{ $action }}
+            <a href="{{ $action }}">
+                <x-button.secondary-button><i class="fa-solid fa-plus"></i></x-button.secondary-button>
+            </a>
             @endif
             <p class="text-gray-500">{{$count}}</p>
             @if($count > 0)
