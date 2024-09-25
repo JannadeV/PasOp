@@ -11,13 +11,7 @@
         <p class="text-sm ml-1">Email: {{ $user->email }}</p>
     </div>
 
-    <x-dashboard-section header="Mijn huisdieren" :count="count($huisdieren)">
-        <x-slot name="action">
-            <x-button.secondary-button action="{{ route('huisdier.create') }}">
-                <i class="fa-solid fa-plus"></i>
-            </x-button.secondary-button>
-        </x-slot>
-
+    <x-dashboard-section header="Mijn huisdieren" :count="count($huisdieren)" :action="route('huisdier.create')">
         <x-slot name="cards">
             @if(count($huisdieren) > 0)
             @foreach ($huisdieren as $huisdier)
