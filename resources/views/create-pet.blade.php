@@ -11,7 +11,7 @@
         </h2>
     </x-slot>
 
-    <form onsubmit="return validateForm()" action="{{ route('pet.store') }}" method="POST">
+    <form onsubmit="return validateForm()" action="{{ route('huisdier.store') }}" method="POST">
         @csrf
         <label for="name">Naam: </label>
         <input type="text" id="name" name="name"><br>
