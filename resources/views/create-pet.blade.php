@@ -29,5 +29,11 @@
         <label for="vis"><i class="fa-solid fa-fish text-gray-700 text-4xl"></i></label>
         <input type="radio" name="soort" id="anders" value="anders">
         <label for="anders"><i class="fa-solid fa-ellipsis text-gray-700 text-4xl"></i></label>
+
+        <p>Voeg een foto van het dier toe</p>
+        <x-input.add-picture :route="route('dierfotos.store')" fotoname="dierfoto"/>
+
+        <x-button.primary-button type="submit">Maak het dier aan</x-button.primary-button>
+
     </form>
 </x-app-layout>
