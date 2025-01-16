@@ -28,15 +28,13 @@
 
     <x-slot name="middle">
         @auth
-        <div class="max-h-24 overflow-scroll visible">
-            @if(isset($tijden))
-            @foreach ($tijden as $oppastijd)
+        <div class="max-h-24 overflow-scroll hidden sm:visible">
+            @foreach ($huisdier->oppastijds as $oppastijd)
             <div class="p-2 border border-solid">
                 <p class="text-xs">{{ date("d-m-'y", strtotime($oppastijd->datum))}}</p>
                 <p class="text-xs">{{ substr($oppastijd->start, 0, 5) }} - {{ substr($oppastijd->eind, 0, 5) }}</p>
             </div>
             @endforeach
-            @endif
         </div>
         @endauth
         @guest

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\review;
+use App\Models\Review;
 use Illuminate\Http\Request;
 
 class ReviewController extends Controller
@@ -31,14 +31,15 @@ class ReviewController extends Controller
         $validated = $request->validate([
             'rating' => 'required|integer',
             'oppasser_id' => 'required|exists:users,id',
-            'aanvraag_id' => 'required|exists:aanvraags,id'
+            'aanvraag_id' => 'required|exists:aanvraags,id',
+            'baasje_id' => 'required|exists:users,id'
         ]);
 
         $review = Review::create([
             'rating' => $validated['rating'],
             'oppasser_id' => $validated['oppasser_id'],
             'aanvraag_id' => $validated['aanvraag_id'],
-            'baasje_id' => auth()->id(),
+            'baasje_id' => $validated['baasje_id'],
         ]);
 
         return redirect()->route('aanvraag.show', ['aanvraag' => $validated['aanvraag_id']]);

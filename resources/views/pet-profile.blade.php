@@ -30,18 +30,28 @@
             {{ $huisdier->naam }}
         </h2>
     </x-slot>
-
+    
     <div class="grid grid-cols-12">
         <x-image-carousel
             :fotos="$huisdier->dierfotos"
+            :huisdier="$huisdier"
             :showAdd="$huisdier->baasje == $user"
-            :action="route('dierfotos.store')"
             class="col-start-1 col-end-13 h-72">
-            <x-slot name="inputs">
-                <input type="file" id="myfile" name="dierfoto">
-                <input type="hidden" name="huisdier" value="$huisdier">
+            <x-slot name="addForm">
+                <form method="POST"
+                      action="{{ route('dierfotos.store') }}"
+                      enctype="multipart/form-data"
+                      class="absolute w-20 h-full flex items-center justify-center">
+                    @csrf
+                    <label for="myfile">Selecteer een bestand: </label>
+                    <input type="file" id="myfile" name="dierfoto">
+                    <input type="hidden" name="huisdier" value="{{ $huisdier }}">
+                    <x-button.secondary-button type="submit">Voeg toe</x-button.secondary-button>
+                </form>
             </x-slot>
         </x-image-carousel>
+        <!--TODO: BIO toevoegen voor hieronder-->
+        <p class="col-start-2 col-end-12 pt-2">Bio Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vel lectus ac tellus tincidunt suscipit sit amet ac sapien.</p>
         @if ($huisdier->baasje == $user)
             <x-button.secondary-button class="col-start-2 col-end-12 mt-3 w-max">Pas aan</x-button.secondary-button>
         @else
