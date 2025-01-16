@@ -19,3 +19,4 @@ yarn-error.log
 /.vscode
 package-lock.json
 package.json
+/public/img/zone_identifiers
