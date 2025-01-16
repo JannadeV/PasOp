@@ -1,5 +1,5 @@
 <div class="relative" x-data="{ open: false }" @close.stop="open = false">
-    <div class="w-full flex flex-row items-center justify-between h-16 bg-white border border-1 pl-2" @click="open = ! open">
+    <div class="w-full flex flex-row items-center justify-between h-16 bg-white border border-1 border-oranje3 pl-2" @click="open = ! open">
         <h2 class="text-lg">{{ $header }}</h2>
         <div class="inline-flex items-center">
             @if (isset($action))
