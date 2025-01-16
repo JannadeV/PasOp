@@ -8,23 +8,25 @@
         <title>{{ config('app.name', 'Laravel') }}</title>
 
         <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Kurale&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
         <!-- Scripts -->
         <script src="https://kit.fontawesome.com/3ea26eb442.js" crossorigin="anonymous"></script>
+
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         @include('popper::assets')
     </head>
-    <body class="font-sans text-gray-900 antialiased">
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900">
+    <body class="font-sans text-black antialiased">
+        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-4 sm:pt-0 basiskleur">
             <div>
                 <a href="/">
-                    <x-navigation.application-logo class="w-20 h-20 fill-current text-gray-500" />
+                    <img class="h-28" src="img/titel.png" alt="Naam van de app: Pas op een dier">
                 </a>
             </div>
 
-            <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
+            <div class="w-full px-6 py-4 sm:rounded-lg">
                 {{ $slot }}
             </div>
         </div>
