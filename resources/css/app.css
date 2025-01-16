@@ -1,3 +1,23 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+
+.linkstien {
+    left: 10%;
+}
+
+h1, h2, h3, h4 {
+    font-family: "Kurale", serif;
+}
+
+p {
+    font-family: "Poppins", serif;
+}
+
+.basiskleur {
+    background-color: #FEEFE5;
+}
+
+.border-oranje {
+    border-color: #FFA680;
+}
