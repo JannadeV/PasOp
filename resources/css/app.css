@@ -31,3 +31,10 @@ p {
 
 .overlay-aan {background-color: rgba(0,0,0,0.3);}
 .overlay-uit {background-color: rgba(0,0,0,0);}
+
+.grid-welkom-portrait {
+    grid-template-rows: 1fr 0 1fr;
+}
+.grid-welkom-landscape {
+    grid-template-columns: 1fr 1fr;
+}
