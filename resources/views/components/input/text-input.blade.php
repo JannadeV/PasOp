@@ -6,5 +6,5 @@
     focus:ring-indigo-500
     rounded-xl
     shadow-sm
-    h-6
+    h-7 sm:h-9
 ']) !!}>
