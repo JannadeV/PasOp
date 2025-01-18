@@ -19,14 +19,14 @@
         @include('popper::assets')
     </head>
     <body class="font-sans text-black antialiased">
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-4 sm:pt-0 basiskleur">
-            <div>
-                <a href="/">
-                    <img class="h-28" src="img/titel.png" alt="Naam van de app: Pas op een dier">
+        <div class="h-screen overflow-hidden flex flex-col items-center pt-4 basiskleur">
+            <div class="h-20 sm:max-h-40 sm:h-1/5">
+                <a class="h-full" href="/">
+                    <img class="h-full" src="img/titel.png" alt="Naam van de app: Pas op een dier">
                 </a>
             </div>
 
-            <div class="w-full px-6 py-4 sm:rounded-lg">
+            <div class="w-full h-full overflow-y-scroll overflow-x-hidden px-6 py-4 sm:rounded-lg">
                 {{ $slot }}
             </div>
         </div>
