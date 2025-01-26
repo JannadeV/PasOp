@@ -1,9 +1,4 @@
 <x-app-layout>
-    <script>
-        validateForm = () => {
-
-        }
-    </script>
 
     <x-slot name="header">
         <h2 class="font-semibold text-2xl text-gray-800 dark:text-gray-200 leading-tight">
@@ -11,7 +6,7 @@
         </h2>
     </x-slot>
 
-    <form onsubmit="return validateForm()" action="{{ route('pet.store') }}" method="POST">
+    <form onsubmit="return validateForm()" action="{{ route('huisdier.store') }}" method="POST">
         @csrf
         <label for="name">Naam: </label>
         <input type="text" id="name" name="name"><br>

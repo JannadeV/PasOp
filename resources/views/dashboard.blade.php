@@ -27,9 +27,11 @@
 
         <x-dashboard-section header="Mijn huisdieren" :count="count($huisdieren)">
             <x-slot name="action">
-                <x-button.small-secondary-button class="p-2 mx-4" action="{{ route('huisdier.create') }}">
-                    <i class="fa-solid fa-plus"></i>
-                </x-button.small-secondary-button>
+                <a href="{{ route('huisdier.create') }}">
+                    <x-button.small-secondary-button class="p-2 mx-4">
+                        <i class="fa-solid fa-plus"></i>
+                    </x-button.small-secondary-button>
+                </a>
             </x-slot>
 
             <x-slot name="cards">
