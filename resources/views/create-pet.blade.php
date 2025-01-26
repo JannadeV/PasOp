@@ -1,9 +1,9 @@
 <x-app-layout>
 
     <x-slot name="header">
-        <h2 class="font-semibold text-2xl text-gray-800 dark:text-gray-200 leading-tight">
+        <h1 class="font-semibold text-xl text-gray-800 leading-tight">
             Maak een nieuw huisdier aan
-        </h2>
+        </h1>
     </x-slot>
 
     <form onsubmit="return validateForm()" action="{{ route('huisdier.store') }}" method="POST">
