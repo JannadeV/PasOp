@@ -29,8 +29,8 @@ p, h2 {
 .border-oranje6 {border-color: #FFB291;}
 .border-oranje7 {border-color: #FFA680;}
 
-.overlay-aan {background-color: rgba(0,0,0,0.3);}
-.overlay-uit {background-color: rgba(0,0,0,0);}
+.overlay-aan {background-color: rgba(0,0,0,0.3); display: initial}
+.overlay-uit {background-color: rgba(0,0,0,0); display: none}
 
 .grid-welkom-portrait {
     grid-template-rows: 1fr 0 1fr;
