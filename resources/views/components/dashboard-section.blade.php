@@ -1,5 +1,8 @@
-<div class="relative" id="dropdown-container">
-    <div class="w-full flex flex-row items-center justify-between h-16 bg-white border border-1 border-oranje3 pl-2" id="dropdown-toggle">
+<div class="relative"
+     x-data="{ open: false }"
+     @close.stop="open = false">
+    <div class="w-full flex flex-row items-center justify-between h-16 bg-white border border-1 border-oranje3 pl-2"
+         @click="open = ! open">
         <h2 class="text-lg">{{ $header }}</h2>
         <div class="inline-flex items-center">
             @if (isset($action))
@@ -18,7 +21,14 @@
         </div>
     </div>
 
-    <div class="hidden mt-2 w-full rounded-md transition-all duration-200 transform opacity-0 scale-95" id="dropdown-content">
+    <div class="mt-2 w-full rounded-md"
+         x-show="open"
+         style="display: none;"
+         x-transition:enter="transistion ease-out duration-200"
+         x-transition:enter-start="opacity-0 scale-95"
+         x-transition:enter-end="opacity-100 scale-100"
+         x-transition:leave="transition ease-in duration-75"
+         x-transition:leave-start="opacity-100 scale-100">
         <div class="rounded-md py-1 px-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1">
             {{ $cards }}
         </div>
