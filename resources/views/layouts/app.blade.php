@@ -20,22 +20,25 @@
 
         @include('popper::assets')
         @viteReactRefresh
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/main.js'])
     </head>
-    <body class="font-sans antialiased overflow-hidden">
-        <div class="min-h-screen oranje1">
+    <body class="font-sans antialiased">
+        <div class="h-screen w-screen overflow-hidden flex flex-col items-center oranje1">
             @include('layouts.navigation')
 
             <!-- Page Heading -->
 
             @if (isset($header))
+            <div class="relative h-12 w-screen bg-white border-b border-oranje2 place-content-center items-center flex">
                 {{ $header }}
+            </div>
             @endif
 
             <!-- Page Content -->
-            <main class="overflow-scroll w-screen">
+            <div class="relative w-full h-full overflow-y-scroll overflow-x-hidden py-4 sm:rounded-lg">
                 {{ $slot }}
-            </main>
+            </div>
+
         </div>
     </body>
 </html>

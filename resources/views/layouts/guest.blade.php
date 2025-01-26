@@ -19,7 +19,7 @@
         @include('popper::assets')
     </head>
     <body class="font-sans text-black antialiased">
-        <div class="h-screen overflow-hidden flex flex-col items-center pt-4 basiskleur">
+        <div class="h-screen overflow-hidden flex flex-col items-center pt-4 oranje1">
             <div class="h-20 sm:max-h-40 sm:h-1/5">
                 <a class="h-full" href="/">
                     <img class="h-full" src="img/titel.png" alt="Naam van de app: Pas op een dier">

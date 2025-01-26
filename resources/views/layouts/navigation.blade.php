@@ -1,6 +1,6 @@
 
 <nav x-data="{ open: false }"
-     class="bg-white border-b border-oranje3">
+     class="bg-white border-b border-oranje3 w-full">
 
 
     <!-- Primary Navigation Menu -->
