@@ -6,11 +6,11 @@
     left: 10%;
 }
 
-h1, h2, h3, h4 {
+h1, h3, h4 {
     font-family: "Kurale", serif;
 }
 
-p {
+p, h2 {
     font-family: "Poppins", serif;
 }
 
@@ -29,5 +29,12 @@ p {
 .border-oranje6 {border-color: #FFB291;}
 .border-oranje7 {border-color: #FFA680;}
 
-.overlay-aan {background-color: rgba(0,0,0,0.3);}
-.overlay-uit {background-color: rgba(0,0,0,0);}
+.overlay-aan {background-color: rgba(0,0,0,0.3); display: initial}
+.overlay-uit {background-color: rgba(0,0,0,0); display: none}
+
+.grid-welkom-portrait {
+    grid-template-rows: 1fr 0 1fr;
+}
+.grid-welkom-landscape {
+    grid-template-columns: 1fr 1fr;
+}

@@ -2,7 +2,7 @@
     'type' => 'button',
     'class' => '
         inline-flex items-center justify-center
-        px-4 py-2
+        p-2 mx-4
         bg-white
         border border-gray-300 rounded-md
         font-semibold text-xs text-gray-700 uppercase

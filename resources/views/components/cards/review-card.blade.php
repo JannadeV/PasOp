@@ -3,10 +3,10 @@
         <div class="flex flex-col justify-between">
             <h2 class="text-lg leading-tight font-medium w-1/2">{{ $review->baasje->name . " geeft " . $review->oppasser->name }}</h2>
             <div class="flex flex-row">
-                @for(i = 0; i < $review->rating; i++)
+                @for($i = 0; $i < $review->rating; $i++)
                 <i class="fa-solid fa-star"></i>
                 @endfor
-                @for(i = 0; i < 5 - $review->rating; i++)
+                @for($i = 0; $i < 5 - $review->rating; $i++)
                 <i class="fa-regular fa-star"></i>
                 @endfor
             </div>
