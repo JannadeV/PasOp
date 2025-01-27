@@ -21,7 +21,7 @@
             </div>
 
             <div class="flex-shrink px-8 max-w-xs">
-                <img class="max-w-full h-auto relative scale-x-[-1]" src="img/kwispel-hond.gif" alt="kwispelende hond">
+                <img class="max-w-full h-auto relative scale-x-[-1]" src="{{ asset('img/kwispel-hond.gif') }}" alt="kwispelende hond">
             </div>
         </div>
 
