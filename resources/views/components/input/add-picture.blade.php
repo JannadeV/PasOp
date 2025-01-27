@@ -3,6 +3,7 @@
       enctype="multipart/form-data"
       class="absolute w-20 h-full flex items-center justify-center">
     @csrf
+
     <label for="myfile">Selecteer een bestand: </label>
     <input type="file" id="myfile" name={{ $fotoname }}>
     @if (isset($connectTo))

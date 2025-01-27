@@ -30,7 +30,7 @@
         </h2>
     </x-slot>
 
-    <div class="grid grid-cols-12">
+    <main class="grid grid-cols-12">
         <x-image-carousel
             :fotos="$huisdier->dierfotos"
             :huisdier="$huisdier"
@@ -44,8 +44,7 @@
                 </x-input.add-picture>
             </x-slot>
         </x-image-carousel>
-        <!--TODO: BIO toevoegen voor hieronder-->
-        <p class="col-start-2 col-end-12 pt-2">Bio Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vel lectus ac tellus tincidunt suscipit sit amet ac sapien.</p>
+
         @if ($huisdier->baasje == $user)
             <x-button.secondary-button class="col-start-2 col-end-12 mt-3 w-max">Pas aan</x-button.secondary-button>
         @else
@@ -74,5 +73,5 @@
                 </form>
             </div>
         @endif
-    </div>
+        </main>
 </x-app-layout>

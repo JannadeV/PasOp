@@ -14,15 +14,12 @@
         @endforeach
     </div>
 
-
-    </div>
-
-    <div    class="bottom-0 absolute"
-            x-data="{
-                open: false,
-                get isOpen() { return this.open },
-                toggle() { this.open = ! this.open; console.log('getoggled') },
-            }">
+    <div class="bottom-0 absolute"
+         x-data="{
+            open: false,
+            get isOpen() { return this.open },
+            toggle() { this.open = ! this.open; console.log('getoggled') },
+         }">
         <div class="absolute flex flex-row left-1/2 -translate-x-1/2 z-10">
             <div class="relative">
                 <div class="bg-gray-800 h-3 w-3 absolute -translate-y-full -translate-x-1/2"></div>
