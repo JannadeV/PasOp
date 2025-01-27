@@ -1,5 +1,4 @@
-<x-app-layout class="overflow-scroll">
-
+<x-app-layout>
     <script>
         function validateForm () {
             // Zoek alle checkboxen
