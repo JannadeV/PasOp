@@ -1,5 +1,5 @@
 <form method="POST"
-      action="$route"
+      action="{{ $route }}"
       enctype="multipart/form-data"
       class="absolute w-20 h-full flex items-center justify-center">
     @csrf

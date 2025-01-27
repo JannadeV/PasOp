@@ -39,7 +39,9 @@
             class="col-start-1 col-end-13 h-72">
             <x-slot name="addForm">
                 <x-input.add-picture :route="route('dierfotos.store')" fotoname="dierfoto">
-                    <x-slot name="connectTo"><input type="hidden" name="huisdier" value="{{ $huisdier }}"></x-slot>
+                    <x-slot name="connectTo">
+                        <input type="hidden" name="huisdier" value="{{ $huisdier->id }}">
+                    </x-slot>
                 </x-input.add-picture>
             </x-slot>
         </x-image-carousel>
