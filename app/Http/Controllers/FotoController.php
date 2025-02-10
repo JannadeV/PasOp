@@ -32,7 +32,7 @@ class FotoController extends Controller
                 'foto' => 'required|image|mimes:jpeg,jpg,png,gif|max:2048',
             ]);
 
-            $path = $validated['foto']->store('uploads', 'public');
+            $path = $validated['foto']->store('images');
 
             return response()->json(['path' => $path], 200);
 

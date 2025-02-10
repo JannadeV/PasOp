@@ -34,7 +34,19 @@ class HuisdierController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string',
+            'soort' => 'required|string'
+        ]);
+
+        $huisdier = Huisdier::create([
+            'naam' => $validated['name'],
+            'soort' => $validated['soort'],
+            'baasje_id' => auth()->id()
+        ]);
+
+        //redirect
+        return redirect()->route('huisdier.show', ['huisdier' => $huisdier]);
     }
 
     /**

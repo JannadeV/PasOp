@@ -29,6 +29,9 @@ class DierfotoController extends Controller
      */
     public function store(Request $request)
     {
+
+        //liever niet via http client; zoektocht naar manier terwijl je binnen de applicatie blijft
+        //ws helpt https://laravel.com/docs/11.x/requests of .../responses
         $response = Http::asForm()->post(url('/upload'), [
             'foto' => $request->file('dierfoto')
         ]);
