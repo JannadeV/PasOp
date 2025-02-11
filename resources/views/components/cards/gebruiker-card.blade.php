@@ -17,7 +17,11 @@
               action="{{ route('user.block', ['user' => $gebruiker]) }}">
             @csrf
             @method('PATCH')
+            @if($gebruiker->role == "blocked")
+            <x-button.primary-button type="submit" name="role" value="normal">Deblokkeer gebruiker</x-button.primary-button>
+            @else
             <x-button.danger-button type="submit" name="role" value="blocked">Blokkeer gebruiker</x-button.danger-button>
+            @endif
         </form>
     </x-slot>
 
