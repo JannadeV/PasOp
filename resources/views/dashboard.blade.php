@@ -92,6 +92,28 @@
         </x-dashboard-section>
         @endif
 
+        @if($user->role == "admin")
+        @if(count($gebruikers) > 0)
+        <x-dashboard-section header="Gebruikers" :count="count($gebruikers)">
+            <x-slot name="cards">
+                @foreach($gebruikers as $gebruiker)
+                <x-cards.gebruiker-card :gebruiker="$gebruiker"/>
+                @endforeach
+            </x-slot>
+        </x-dashboard-section>
+        @endif
+
+        @if(count($blocked) > 0)
+        <x-dashboard-section header="Geblokkeerde gebruikers" :count="count($blocked)">
+            <x-slot name="cards">
+                @foreach ($blocked as $gebruiker)
+                <x-cards.gebruiker-card :gebruiker="$gebruiker"/>
+                @endforeach
+            </x-slot>
+        </x-dashboard-section>
+        @endif
+        @endif
+
 
     </main>
 </x-app-layout>

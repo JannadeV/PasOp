@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Aanvraag;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -31,6 +32,12 @@ class UserController extends Controller
                 ->get();
 
             $reviews = array();
+
+            $gebruikers = User::where('role', "normal")
+                ->get();
+
+            $blocked = User::where('role', "blocked")
+                ->get();
 
         } else {
 
@@ -62,6 +69,10 @@ class UserController extends Controller
               ->get();
 
             $reviews = $user->reviewsGot;
+
+            $gebruikers = array();
+
+            $blocked = array();
 
         }
 
