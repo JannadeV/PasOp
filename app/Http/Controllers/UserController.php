@@ -12,7 +12,7 @@ class UserController extends Controller
         $user = auth()->user();
         $huisdieren = $user->huisdiers;
 
-        if($user->isAdmin) {
+        if($user->role == "admin") {
 
             $huisdieren = array();
 

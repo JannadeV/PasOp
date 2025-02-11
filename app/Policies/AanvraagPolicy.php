@@ -11,7 +11,7 @@ class AanvraagPolicy
 
     public function before(User $user, string $ability): bool
     {
-        if ($user->isAdmin) {
+        if ($user->role == "admin") {
             return true;
         }
 

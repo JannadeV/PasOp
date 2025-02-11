@@ -25,7 +25,7 @@
             </div>
         </div>
 
-        @if( ! $user->isAdmin)
+        @if( ! $user->role == "admin")
         <x-dashboard-section header="Mijn huisdieren" :count="count($huisdieren)">
             <x-slot name="action">
                 <a href="{{ route('huisdier.create') }}">
@@ -82,7 +82,7 @@
         @endif
 
 
-        @if(count($reviews) > 0 && ! $user->isAdmin)
+        @if(count($reviews) > 0 && ! $user->role == "admin")
         <x-dashboard-section header="Mijn reviews" :count="count($reviews)">
             <x-slot name="cards">
                 @foreach($reviews as $review)

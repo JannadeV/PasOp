@@ -140,7 +140,7 @@
                         @if ($aanvraag->antwoord == -1)
                             @if($user == $aanvraag->oppasser)
                             <p>Wacht tot het baasje uw oppasaanvraag beantwoordt.</p>
-                            @elseif(! $user->isAdmin)
+                            @elseif(! $user->role == "admin")
                             <p>Vindt u het goed als {{ $aanvraag->oppasser->name }} op uw dier past?</p>
                             <form method="POST" enctype="multipart/form-data"
                                   action="{{ route('aanvraag.update', ['aanvraag' => $aanvraag]) }}">
@@ -177,7 +177,7 @@
                     @endif
                 @endif
                 @endif
-                @if($user == $aanvraag->oppasser || $user->isAdmin)
+                @if($user == $aanvraag->oppasser || $user->role == "admin")
                 <form method="POST"
                     action="{{ route('aanvraag.destroy', ['aanvraag' => $aanvraag]) }}">
                     @csrf
@@ -186,7 +186,7 @@
                 </form>
                 @elseif($user == $aanvraag->oppastijds[0]->huisdier->baasje)
                 <form method="POST" enctype="multipart/form-data"
-                    action="{{ route('aanvraag.update', ['aanvraag' => $aanvraag]) }}">
+                      action="{{ route('aanvraag.update', ['aanvraag' => $aanvraag]) }}">
                     @csrf
                     @method('PATCH')
                     <x-button.danger-button type="submit" name="antwoord" value=0>Afbreken</x-button.danger-button>
