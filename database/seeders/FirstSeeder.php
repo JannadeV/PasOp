@@ -65,5 +65,12 @@ class FirstSeeder extends Seeder
             'email' => 'reviewer@example.com',
             'password' => Hash::make('password')
         ]);
+
+        User::factory()->create([
+            'name' => 'Admin',
+            'email' => 'admin@example.com',
+            'password' => Hash::make('admin'),
+            'isAdmin' => true
+        ]);
     }
 }
