@@ -76,6 +76,17 @@ class UserController extends Controller
 
         }
 
-        return view('dashboard', compact('user', 'huisdieren', 'aanvragen', 'aangeboden', 'afspraken', 'afgewezen', 'reviews'));
+        return view('dashboard', compact('user', 'huisdieren', 'aanvragen', 'aangeboden', 'afspraken', 'afgewezen', 'reviews', 'gebruikers', 'blocked'));
+    }
+
+    public function block(Request $request, User $user)
+    {
+        $validated = $request->validate([
+            'role' => 'required|string'
+        ]);
+
+        $user->update($validated);
+
+        return redirect()->route('dashboard');
     }
 }

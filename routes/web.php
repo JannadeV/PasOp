@@ -19,6 +19,7 @@ Route::middleware(['auth', 'verified'])->group(function() {
     Route::resource('huisdier', HuisdierController::class)->except(['index']);
     Route::resource('review', ReviewController::class);
     Route::get('dashboard', [UserController::class, 'dashboard'])->name('dashboard');
+    Route::patch('user/{user}', [UserController::class, 'block'])->name('user.block');
 });
 
 Route::controller(HuisdierController::class)->group(function () {
