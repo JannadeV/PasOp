@@ -16,22 +16,19 @@ class UserController extends Controller
 
             $huisdieren = array();
 
-            $aanvragen = Aanvraag::whereHas('oppastijds.huisdier', function ($query) use ($user) {
-                $query->where('antwoord', -1);
-            })->with(['huisfotos', 'oppastijds.huisdier', 'oppasser'])
-              ->get();
+            $aanvragen = Aanvraag::where('antwoord', -1)
+                ->with(['huisfotos', 'oppastijds.huisdier', 'oppasser'])
+                ->get();
 
             $aangeboden = array();
 
-            $afspraken = Aanvraag::whereHas('oppastijds.huisdier', function ($query) use ($user) {
-                $query->where('antwoord', 1);
-            })->with(['huisfotos', 'oppastijds.huisdier', 'oppasser'])
-              ->get();
+            $afspraken = Aanvraag::where('antwoord', 1)
+                ->with(['huisfotos', 'oppastijds.huisdier', 'oppasser'])
+                ->get();
 
-            $afgewezen = Aanvraag::whereHas('oppastijds.huisdier', function ($query) use ($user) {
-                $query->where('antwoord', 0);
-            })->with(['huisfotos', 'oppastijds.huisdier', 'oppasser'])
-              ->get();
+            $afgewezen = Aanvraag::where('antwoord', 0)
+                ->with(['huisfotos', 'oppastijds.huisdier', 'oppasser'])
+                ->get();
 
             $reviews = array();
 

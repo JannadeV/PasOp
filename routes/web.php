@@ -18,14 +18,12 @@ Route::middleware(['auth', 'verified'])->group(function() {
     Route::resource('dierfotos', DierfotoController::class);
     Route::resource('huisdier', HuisdierController::class)->except(['index']);
     Route::resource('review', ReviewController::class);
+    Route::get('dashboard', [UserController::class, 'dashboard'])->name('dashboard');
 });
 
 Route::controller(HuisdierController::class)->group(function () {
     Route::get('/overview', 'index')->name('huisdier.overview');
 });
-
-Route::get('/dashboard', [UserController::class, 'dashboard'])
-    ->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::post('/upload', [FotoController::class, 'store']);
 
