@@ -75,6 +75,8 @@ class OppastijdController extends Controller
      */
     public function destroy(oppastijd $oppastijd)
     {
-        //
+        $oppastijd->delete();
+
+        return redirect()->route('huisdier.show', ['huisdier' => $oppastijd->huisdier]);
     }
 }
