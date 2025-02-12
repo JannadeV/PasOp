@@ -29,7 +29,7 @@ class User extends Authenticatable
         return $this->hasMany(Aanvraag::class, 'oppasser_id');
     }
     //Get the reviews this oppasser got
-    public function reviewsGot(): HasMany 
+    public function reviewsGot(): HasMany
     {
         return $this->hasMany(Review::class, 'oppasser_id');
     }
@@ -44,6 +44,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role'
     ];
 
     /**

@@ -25,6 +25,7 @@
             </div>
         </div>
 
+        @if($user->role != "admin")
         <x-dashboard-section header="Mijn huisdieren" :count="count($huisdieren)">
             <x-slot name="action">
                 <a href="{{ route('huisdier.create') }}">
@@ -42,6 +43,7 @@
                 @endif
             </x-slot>
         </x-dashboard-section>
+        @endif
 
         @if(count($aanvragen) > 0)
         <x-dashboard-section header="Openstaande oppasaanvragen" :count="count($aanvragen)">
@@ -80,7 +82,7 @@
         @endif
 
 
-        @if(count($reviews) > 0)
+        @if(count($reviews) > 0 && ! $user->role == "admin")
         <x-dashboard-section header="Mijn reviews" :count="count($reviews)">
             <x-slot name="cards">
                 @foreach($reviews as $review)
@@ -88,6 +90,28 @@
                 @endforeach
             </x-slot>
         </x-dashboard-section>
+        @endif
+
+        @if($user->role == "admin")
+        @if(count($gebruikers) > 0)
+        <x-dashboard-section header="Gebruikers" :count="count($gebruikers)">
+            <x-slot name="cards">
+                @foreach($gebruikers as $gebruiker)
+                <x-cards.gebruiker-card :gebruiker="$gebruiker"/>
+                @endforeach
+            </x-slot>
+        </x-dashboard-section>
+        @endif
+
+        @if(count($blocked) > 0)
+        <x-dashboard-section header="Geblokkeerde gebruikers" :count="count($blocked)">
+            <x-slot name="cards">
+                @foreach ($blocked as $gebruiker)
+                <x-cards.gebruiker-card :gebruiker="$gebruiker"/>
+                @endforeach
+            </x-slot>
+        </x-dashboard-section>
+        @endif
         @endif
 
 
