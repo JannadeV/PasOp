@@ -25,7 +25,7 @@
             </div>
         </div>
 
-        @if( ! $user->role == "admin")
+        @if($user->role != "admin")
         <x-dashboard-section header="Mijn huisdieren" :count="count($huisdieren)">
             <x-slot name="action">
                 <a href="{{ route('huisdier.create') }}">
