@@ -35,7 +35,7 @@
             :fotos="$huisdier->dierfotos"
             :huisdier="$huisdier"
             :showAdd="$huisdier->baasje == $user"
-            class="col-start-1 col-end-13 h-72">
+            class="col-start-1 col-end-13 h-72 z-0">
             <x-slot name="addForm">
                 <x-input.add-picture :route="route('dierfotos.store')" fotoname="dierfoto">
                     <x-slot name="connectTo">
