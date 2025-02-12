@@ -10,7 +10,7 @@
                 <!-- Logo -->
                 <div class="flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <img class="h-14" src="img/titel.png" alt="Naam van de app: Pas op een dier">
+                        <img class="h-14" src="{{ asset('img/titel.png') }}" alt="Naam van de app: Pas op een dier">
                     </a>
                 </div>
 

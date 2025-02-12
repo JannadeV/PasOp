@@ -1,5 +1,5 @@
 <section {{ $attributes->merge(['class' => 'relative w-full']) }}>
-    <img class="absolute w-full h-full" src="img/blob_inloggen.png" alt="Achtergrondblob">
+    <img class="absolute w-full h-full" src="{{ asset('img/blob_inloggen.png') }}" alt="Achtergrondblob">
 
     <form class="relative w-4/5 h-full linkstien flex flex-col justify-around" method="POST" action="{{ route('login') }}">
         @csrf
@@ -47,7 +47,7 @@
         </div>
 
         <button class="relative left-4 w-1/4" type="submit">
-            <img class="w-4/5" src="img/button_paw.png" alt="Ga">
+            <img class="w-4/5" src="{{ asset('img/button_paw.png') }}" alt="Ga">
         </button>
 
     </form>

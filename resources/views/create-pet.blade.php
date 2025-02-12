@@ -8,6 +8,8 @@
 
     <form onsubmit="return validateForm()" action="{{ route('huisdier.store') }}" method="POST">
         @csrf
+        <p>Let op, de informatie die u hier geeft kan niet meer aangepast worden.</p>
+
         <label for="name">Naam: </label>
         <input type="text" id="name" name="name"><br>
 
@@ -23,6 +25,12 @@
         <input type="radio" name="soort" id="vis" value="vis">
         <label for="vis"><i class="fa-solid fa-fish text-gray-700 text-4xl"></i></label>
         <input type="radio" name="soort" id="anders" value="anders">
-        <label for="anders"><i class="fa-solid fa-question text-gray-700 text-4xl"></i></label>
+        <label for="anders"><i class="fa-solid fa-ellipsis text-gray-700 text-4xl"></i></label>
+
+        <!--<p>Voeg een foto van het dier toe</p>
+        <x-input.add-picture :route="route('dierfotos.store')" fotoname="dierfoto"/>-->
+
+        <x-button.primary-button type="submit">Maak het dier aan</x-button.primary-button>
+
     </form>
 </x-app-layout>

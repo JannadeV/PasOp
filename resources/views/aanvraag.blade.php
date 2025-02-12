@@ -35,7 +35,7 @@
         </h2>
     </x-slot>
 
-    <div>
+    <div class="h-full">
         <div class="flex flex-row items-stretch bg-gray-200 w-screen space-x-2 p-2">
             <div class="grid grid-cols-2 grid-rows-3 place-items-center bg-gray-100 border border-solid border-gray-300 rounded-lg">
                 <img class="col-span-1 row-span-full h-full w-full object-cover rounded-l-lg"
@@ -62,8 +62,8 @@
                 @endforeach
             </div>
         </div>
-        <div class="relative h-64">
-            <div class="flex flex-col h-full place-items-center text-gray-600 space-y-2 py-4 overflow-scroll relative">
+        <div class="relative h-full">
+            <div class="flex flex-col place-items-center text-gray-600 space-y-2 py-4 relative">
                 @if ($aanvraag->antwoord == 1)
                     <p>De oppasafspraak staat vast</p>
                     <p>.</p>
@@ -140,7 +140,7 @@
                         @if ($aanvraag->antwoord == -1)
                             @if($user == $aanvraag->oppasser)
                             <p>Wacht tot het baasje uw oppasaanvraag beantwoordt.</p>
-                            @else
+                            @elseif(! $user->role == "admin")
                             <p>Vindt u het goed als {{ $aanvraag->oppasser->name }} op uw dier past?</p>
                             <form method="POST" enctype="multipart/form-data"
                                   action="{{ route('aanvraag.update', ['aanvraag' => $aanvraag]) }}">
@@ -177,22 +177,22 @@
                     @endif
                 @endif
                 @endif
+                @if($user == $aanvraag->oppasser || $user->role == "admin")
+                <form method="POST"
+                    action="{{ route('aanvraag.destroy', ['aanvraag' => $aanvraag]) }}">
+                    @csrf
+                    @method('DELETE')
+                    <x-button.danger-button type="submit">Aanvraag verwijderen</x-button.danger-button>
+                </form>
+                @elseif($user == $aanvraag->oppastijds[0]->huisdier->baasje)
+                <form method="POST" enctype="multipart/form-data"
+                      action="{{ route('aanvraag.update', ['aanvraag' => $aanvraag]) }}">
+                    @csrf
+                    @method('PATCH')
+                    <x-button.danger-button type="submit" name="antwoord" value=0>Afbreken</x-button.danger-button>
+                </form>
+                @endif
             </div>
         </div>
-        @if($user == $aanvraag->oppasser)
-        <form method="POST"
-              action="{{ route('aanvraag.destroy', ['aanvraag' => $aanvraag]) }}">
-            @csrf
-            @method('DELETE')
-            <x-button.danger-button type="submit">Annuleren</x-button.danger-button>
-        </form>
-        @elseif($user == $aanvraag->oppastijds[0]->huisdier->baasje)
-        <form method="POST" enctype="multipart/form-data"
-              action="{{ route('aanvraag.update', ['aanvraag' => $aanvraag]) }}">
-            @csrf
-            @method('PATCH')
-            <x-button.danger-button type="submit" name="antwoord" value=0>Afbreken</x-button.danger-button>
-        </form>
-        @endif
     </div>
 </x-app-layout>
