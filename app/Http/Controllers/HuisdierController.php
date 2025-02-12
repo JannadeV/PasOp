@@ -10,14 +10,31 @@ class HuisdierController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $huisdiers = Huisdier::with([
+        $query = Huisdier::with([
             'dierfotos' => function($query) {
                 $query->take(1);
-            }, 'oppastijds' => function($query) {
-                $query->orderBy('datum')->orderBy('start');
-            }])->get();
+            },
+            'oppastijds' => function($query) {
+                $query->orderBy('datum')
+                      ->orderBy('start');
+            }
+        ]);
+
+        if ($request->filled('soort')) {
+            $query->whereIn('soort', $request->soort);
+        }
+
+        if ($request->filled('search')) {
+            $query->where(function ($q) use ($request) {
+                $q->where('naam', 'like', '%' . $request->search . '%')
+                  ->orWhere('soort', 'like', '%' . $request->search . '%');
+            });
+        }
+
+        $huisdiers = $query->get();
+
         return view('pet-overview', compact('huisdiers'));
     }
 
