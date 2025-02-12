@@ -78,6 +78,10 @@
                            {{ in_array('anders', request('soort', [])) ? 'checked' : '' }}>
                     <label for="anders"><i class="fa-solid fa-ellipsis text-gray-700 text-4xl"></i></label>
 
+                    <a href="{{ route('huisdier.overview') }}">
+                        <x-button.secondary-button>Verwijder filters</x-button.secondary-button>
+                    </a>
+
                     <button class="relative left-4 w-1/4" type="submit">
                         <img class="w-4/5" src="{{ asset('img/button_paw.png') }}" alt="Ga">
                     </button>
