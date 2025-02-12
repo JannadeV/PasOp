@@ -9,7 +9,9 @@
     <div class="p-1 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1">
         @foreach ($huisdiers as $huisdier)
         <div class="col-span-1">
-            <x-cards.pet-card :huisdier="$huisdier" :showTimes='true'/>
+            <x-cards.pet-card :huisdier="$huisdier"
+                              :path="isset($huisdier->dierfotos[0]) ? $huisdier->dierfotos[0]->path : 'img/huisdieren.jpg'"
+                              :showTimes='true'/>
         </div>
         @endforeach
     </div>
@@ -20,6 +22,7 @@
             get isOpen() { return this.open },
             toggle() { this.open = ! this.open; console.log('getoggled') },
          }">
+
         <div class="absolute flex flex-row left-1/2 -translate-x-1/2 z-10">
             <div class="relative">
                 <div class="bg-gray-800 h-3 w-3 absolute -translate-y-full -translate-x-1/2"></div>

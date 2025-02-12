@@ -1,6 +1,6 @@
 @include('popper::assets')
 <x-cards.general-card
-    :bigFotoPath="asset($huisdier->dierfotos[0]->path)"
+    :bigFotoPath="asset($path)"
     :bigFotoAlt=" 'Foto van een huisdier' "
     :title="$huisdier->naam">
 

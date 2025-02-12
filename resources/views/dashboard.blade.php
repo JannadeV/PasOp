@@ -38,7 +38,8 @@
             <x-slot name="cards">
                 @if(count($huisdieren) > 0)
                 @foreach ($huisdieren as $huisdier)
-                    <x-cards.pet-card :huisdier="$huisdier"/>
+                    <x-cards.pet-card :huisdier="$huisdier"
+                                      :path="isset($huisdier->dierfotos[0]) ? $huisdier->dierfotos[0]->path : 'img/huisdieren.jpg'"/>
                 @endforeach
                 @endif
             </x-slot>
