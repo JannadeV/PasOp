@@ -23,6 +23,23 @@
         @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/main.js'])
     </head>
     <body class="font-sans antialiased">
+        <script>
+            window.onload = () => {
+                document.getElementById("loading").style.display = "none";
+            }
+        </script>
+        <div id="loading" class="absolute top-0 left-0 h-full w-full z-50 oranje1">
+            <img class="w-24 top-1/2 absolute"
+                 style="
+                    transform: scaleX(-1);
+                    animation-name: loading;
+                    animation-duration: 10s;
+                    animation-iteration-count: infinite;
+                    animation-timing-function: linear;
+                 "
+                 src="{{ asset('img/loading.gif') }}"
+                 alt="simpel gifje om de pagina te laten laden">
+        </div>
         <div class="h-screen w-screen overflow-hidden flex flex-col items-center oranje1">
             @include('layouts.navigation')
 

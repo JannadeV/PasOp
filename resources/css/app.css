@@ -2,6 +2,15 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+@keyframes loading {
+    0% {left:37.5%;transform: scaleX(-1);}
+    24.99% {left:75%;transform: scaleX(-1);}
+    25% {transform: scaleX(1);}
+    74.99% {transform: scaleX(1);}
+    75% {left:0%;transform: scaleX(-1);}
+    100% {left:37.5%;transform: scaleX(-1);}
+}
+
 .linkstien {
     left: 10%;
 }
@@ -32,9 +41,12 @@ p, h2 {
 .overlay-aan {background-color: rgba(0,0,0,0.3); display: initial}
 .overlay-uit {background-color: rgba(0,0,0,0); display: none}
 
+
 .grid-welkom-portrait {
     grid-template-rows: 1fr 0 1fr;
 }
 .grid-welkom-landscape {
     grid-template-columns: 1fr 1fr;
 }
+
+
