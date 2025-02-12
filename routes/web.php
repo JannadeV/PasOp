@@ -4,6 +4,7 @@ use App\Http\Controllers\AanvraagController;
 use App\Http\Controllers\DierfotoController;
 use App\Http\Controllers\FotoController;
 use App\Http\Controllers\HuisdierController;
+use App\Http\Controllers\OppastijdController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\UserController;
@@ -17,6 +18,7 @@ Route::middleware(['auth', 'verified'])->group(function() {
     Route::resource('aanvraag', AanvraagController::class);
     Route::resource('dierfotos', DierfotoController::class);
     Route::resource('huisdier', HuisdierController::class)->except(['index']);
+    Route::resource('oppastijd', OppastijdController::class);
     Route::resource('review', ReviewController::class);
     Route::get('dashboard', [UserController::class, 'dashboard'])->name('dashboard');
     Route::patch('user/{user}', [UserController::class, 'block'])->name('user.block');

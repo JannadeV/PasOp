@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\oppastijd;
+use App\Models\Oppastijd;
 use Illuminate\Http\Request;
 
 class OppastijdController extends Controller
@@ -28,7 +28,22 @@ class OppastijdController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'huisdier_id' => 'required|exists:huisdiers,id',
+            'datum' => 'required|date',
+            'start' => 'required',
+            'eind' => 'required'
+        ]);
+
+        $oppastijd = Oppastijd::create([
+            'huisdier_id' => $validated['huisdier_id'],
+            'datum' => $validated['datum'],
+            'start' => $validated['start'],
+            'eind' => $validated['eind'],
+        ]);
+
+        //redirect
+        return redirect()->route('huisdier.show', ['huisdier' => $oppastijd->huisdier]);
     }
 
     /**
