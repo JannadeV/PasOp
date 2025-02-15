@@ -1,26 +1,24 @@
 <x-app-layout>
     <x-slot name="header">
-        <h1 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Dashboard') }}
-        </h1>
     </x-slot>
 
     <main class="relative">
 
         <div class="flex w-screen pb-2">
             <div class="p-3 flex-1">
-                <h3 class="text-xl">Over mij</h3>
-                <div class="flex text-sm flex-nowrap">
+                <h3 class="text-lg">Over mij</h3>
+                <div class="flex text-sm sm:text-base flex-nowrap">
                     <span class="font-semibold">Naam:</span>
                     <span class="ml-2">{{ $user->name }}</span>
                 </div>
-                <div class="flex text-sm flex-nowrap">
+                <div class="flex text-sm sm:text-base flex-nowrap">
                     <span class="font-semibold">Email:</span>
                     <span class="ml-2">{{ $user->email }}</span>
                 </div>
             </div>
 
-            <div class="flex-shrink px-8 max-w-xs">
+            <div class="flex-shrink px-8 max-w-sm sm:w-1/3">
                 <img class="max-w-full h-auto relative scale-x-[-1]" src="{{ asset('img/kwispel-hond.gif') }}" alt="kwispelende hond">
             </div>
         </div>

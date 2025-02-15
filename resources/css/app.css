@@ -15,11 +15,11 @@
     left: 10%;
 }
 
-h1, h3, h4 {
+h1, h4 {
     font-family: "Kurale", serif;
 }
 
-p, h2 {
+p, h2, h3 {
     font-family: "Poppins", serif;
 }
 
@@ -38,7 +38,7 @@ p, h2 {
 .border-oranje6 {border-color: #FFB291;}
 .border-oranje7 {border-color: #FFA680;}
 
-.overlay-aan {background-color: rgba(0,0,0,0.3); display: initial}
+.overlay-aan {background-color: rgba(0,0,0,0.3); display: inline}
 .overlay-uit {background-color: rgba(0,0,0,0); display: none}
 
 
