@@ -1,5 +1,5 @@
 <div  x-data="{ open: false }" x-effect="console.log(open)"
-      class="bg-white border-b border-oranje3 w-full flex justify-around items-baseline pt-4">
+      class="w-full flex justify-around items-baseline pt-4">
 
     @php $showClasses = $mobile ? "flex sm:hidden" : "hidden sm:flex"; @endphp
 
@@ -7,7 +7,7 @@
         <button @click="open = !open"
                 @click.outside="open = false"
                 @close.stop="open = false"
-                class="z-40 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
+                class="z-40 inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
             {{ $trigger }}
         </button>
     </div>
