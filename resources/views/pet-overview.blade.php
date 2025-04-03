@@ -93,7 +93,7 @@
 
             </div>
         </div>
-        <div class="w-screen bg-gray-100 h-3 absolute bottom-2 z-0"></div>
+        <div class="w-screen oranje1 h-3 absolute bottom-2 z-0"></div>
     </div>
 
 
