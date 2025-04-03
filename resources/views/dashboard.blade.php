@@ -6,7 +6,7 @@
     <main class="relative">
 
         <div class="flex w-screen pb-2">
-            <div class="p-3 flex-1">
+            <div class="p-3 flex-1 md:my-auto md:pl-10 lg:pl-20 xl:pl-40">
                 <h3 class="text-lg">Over mij</h3>
                 <div class="flex text-sm sm:text-base flex-nowrap">
                     <span class="font-semibold">Naam:</span>
@@ -18,7 +18,7 @@
                 </div>
             </div>
 
-            <div class="flex-shrink px-8 max-w-sm sm:w-1/3">
+            <div class="flex-shrink px-8 max-w-sm sm:w-1/3 lg:w-1/4 xl:w-60 md:mr-10 lg:mr-20 xl:mr-40">
                 <img class="max-w-full h-auto relative scale-x-[-1]" src="{{ asset('img/kwispel-hond.gif') }}" alt="kwispelende hond">
             </div>
         </div>

@@ -3,7 +3,7 @@
      @close.stop="open = false">
     <div class="w-full flex flex-row items-center justify-between h-16 bg-white border border-1 border-oranje3 pl-2 cursor-pointer"
          @click="open = ! open">
-        <h2 class="text-lg">{{ $header }}</h2>
+        <h2 class="text-lg lg:mx-auto lg:pl-20">{{ $header }}</h2>
         <div class="inline-flex items-center">
             @if (isset($action))
             {{ $action }}
@@ -26,7 +26,7 @@
     </div>
 
     @if($count > 0)
-    <div class="mt-2 w-full rounded-md"
+    <div class="my-2 w-full rounded-md"
          x-show="open"
          style="display: none;"
          x-transition:enter="transistion ease-out duration-200"
