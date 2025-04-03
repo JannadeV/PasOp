@@ -6,6 +6,7 @@
         </h2>
     </x-slot>
 
+    <!--pet cards-->
     <div class="p-1 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1">
         @foreach ($huisdiers as $huisdier)
         <div class="col-span-1">
@@ -16,6 +17,7 @@
         @endforeach
     </div>
 
+    <!--filter-->
     <div class="bottom-0 absolute"
          x-data="{
             open: false,
@@ -23,6 +25,7 @@
             toggle() { this.open = ! this.open; console.log('getoggled') },
          }">
 
+        <!--toggle bar-->
         <div class="absolute flex flex-row left-1/2 -translate-x-1/2 z-10">
             <div class="relative">
                 <div class="bg-gray-800 h-3 w-3 absolute -translate-y-full -translate-x-1/2"></div>
@@ -40,7 +43,7 @@
             </div>
         </div>
 
-        <div class="w-screen rounded-t-md border-t-8 border-gray-800">
+        <!--filters-->
             <div class="w-screen min-h-12 rounded-t-md border-0 bg-white" x-show="isOpen">
                 <form method="GET"
                       action="{{ route('huisdier.overview') }}"
