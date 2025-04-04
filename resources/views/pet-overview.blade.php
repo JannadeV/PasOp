@@ -47,48 +47,61 @@
         <div class="w-screen h-3 bg-gray-800 rounded-t-md"></div>
 
         <!--filters-->
-        <div class="absolute w-screen min-h-screen bg-gray-800 flex">
+        <div class="absolute w-screen min-h-screen bg-gray-800">
             <form method="GET"
                   action="{{ route('huisdier.overview') }}"
-                  class="mb-4 flex flex-wrap gap-2">
+                  class="mb-4 gap-2">
 
-                <x-input.text-input
+                <section class="grid grid-cols-3 justify-items-center gap-2">
+
+                    <x-input.text-input
                         type="text"
                         name="search"
                         placeholder="Zoek op naam of soort"
-                        value="{{ request('search') }}">
-                </x-input.text-input>
+                        value="{{ request('search') }}"
+                        class="col-span-3 w-1/2 mt-4">
+                    </x-input.text-input>
 
-                <p>Soort: </p>
-                <input type="checkbox" name="soort[]" id="hond" value="hond"
-                        {{ in_array('hond', request('soort', [])) ? 'checked' : '' }}>
-                <label for="hond"><i class="fa-solid fa-dog text-gray-700 text-4xl"></i></label>
+                    <p class="col-span-3 text-white justify-self-start pl-20">Soort: </p>
+                    <div>
+                        <input type="checkbox" name="soort[]" id="hond" value="hond"
+                                {{ in_array('hond', request('soort', [])) ? 'checked' : '' }}>
+                        <label for="hond"><i class="fa-solid fa-dog text-oranje5 text-4xl"></i></label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="soort[]" id="kat" value="kat"
+                                {{ in_array('kat', request('soort', [])) ? 'checked' : '' }}>
+                        <label for="kat"><i class="fa-solid fa-cat text-oranje5 text-4xl"></i></label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="soort[]" id="vogel" value="vogel"
+                                {{ in_array('vogel', request('soort', [])) ? 'checked' : '' }}>
+                        <label for="vogel"><i class="fa-solid fa-feather text-oranje5 text-4xl"></i></label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="soort[]" id="paard" value="paard"
+                                {{ in_array('paard', request('soort', [])) ? 'checked' : '' }}>
+                        <label for="paard"><i class="fa-solid fa-horse text-oranje5 text-4xl"></i></label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="soort[]" id="vis" value="vis"
+                                {{ in_array('vis', request('soort', [])) ? 'checked' : '' }}>
+                        <label for="vis"><i class="fa-solid fa-fish text-oranje5 text-4xl"></i></label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="soort[]" id="anders" value="anders"
+                                {{ in_array('anders', request('soort', [])) ? 'checked' : '' }}>
+                        <label for="anders"><i class="fa-solid fa-ellipsis text-oranje5 text-4xl"></i></label>
+                    </div>
 
-                <input type="checkbox" name="soort[]" id="kat" value="kat"
-                        {{ in_array('kat', request('soort', [])) ? 'checked' : '' }}>
-                <label for="kat"><i class="fa-solid fa-cat text-gray-700 text-4xl"></i></label>
+                    <a href="{{ route('huisdier.overview') }}"
+                       class="col-span-2 m-4">
+                        <x-button.secondary-button>Verwijder filters</x-button.secondary-button>
+                    </a>
+                </section>
 
-                <input type="checkbox" name="soort[]" id="vogel" value="vogel"
-                        {{ in_array('vogel', request('soort', [])) ? 'checked' : '' }}>
-                <label for="vogel"><i class="fa-solid fa-feather text-gray-700 text-4xl"></i></label>
 
-                <input type="checkbox" name="soort[]" id="paard" value="paard"
-                        {{ in_array('paard', request('soort', [])) ? 'checked' : '' }}>
-                <label for="paard"><i class="fa-solid fa-horse text-gray-700 text-4xl"></i></label>
-
-                <input type="checkbox" name="soort[]" id="vis" value="vis"
-                        {{ in_array('vis', request('soort', [])) ? 'checked' : '' }}>
-                <label for="vis"><i class="fa-solid fa-fish text-gray-700 text-4xl"></i></label>
-
-                <input type="checkbox" name="soort[]" id="anders" value="anders"
-                        {{ in_array('anders', request('soort', [])) ? 'checked' : '' }}>
-                <label for="anders"><i class="fa-solid fa-ellipsis text-gray-700 text-4xl"></i></label>
-
-                <a href="{{ route('huisdier.overview') }}">
-                    <x-button.secondary-button>Verwijder filters</x-button.secondary-button>
-                </a>
-
-                <button class="relative left-4 w-1/4" type="submit">
+                <button class="right-0 top-48 absolute w-1/4" type="submit">
                     <img class="w-3/5 relative" src="{{ asset('img/button_paw.png') }}" alt="Ga">
                 </button>
 

@@ -37,6 +37,13 @@ p, h2, h3 {
 .border-oranje5 {border-color: #FFBEA2;}
 .border-oranje6 {border-color: #FFB291;}
 .border-oranje7 {border-color: #FFA680;}
+.text-oranje1 {color: #FEEFE5;}
+.text-oranje2 {color: #FEE3D4;}
+.text-oranje3 {color: #FEE3D4;}
+.text-oranje4 {color: #FFCBB3;}
+.text-oranje5 {color: #FFBEA2;}
+.text-oranje6 {color: #FFB291;}
+.text-oranje7 {color: #FFA680;}
 
 .overlay-aan {background-color: rgba(0,0,0,0.3); display: inline}
 .overlay-uit {background-color: rgba(0,0,0,0); display: none}
