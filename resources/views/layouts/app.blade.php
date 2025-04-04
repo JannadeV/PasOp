@@ -54,7 +54,7 @@
             @endif
 
             <!-- Page Content -->
-            <div class="relative w-full h-full overflow-y-scroll overflow-x-hidden sm:rounded-lg">
+            <div class="relative w-full h-full overflow-y-scroll overflow-x-hidden">
                 {{ $slot }}
             </div>
 

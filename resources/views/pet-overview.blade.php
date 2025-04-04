@@ -18,80 +18,82 @@
     </div>
 
     <!--filter-->
-    <div class="bottom-0 absolute"
+    <div class="absolute h-screen top-full"
          x-data="{
             open: false,
             get isOpen() { return this.open },
             toggle() { this.open = ! this.open; console.log('getoggled') },
-         }">
+         }"
+         transition
+         :class="{'-mt-72': isOpen, '-mt-2': ! isOpen}">
 
         <!--toggle bar-->
-        <div class="absolute flex flex-row left-1/2 -translate-x-1/2 z-10">
-            <div class="relative">
-                <div class="bg-gray-800 h-3 w-3 absolute -translate-y-full -translate-x-1/2"></div>
-                <div class="bg-gray-100 h-3 w-3 absolute -translate-y-full -translate-x-full rounded-br-md border-0"></div>
+        <div class="absolute flex flex-row w-screen top-1 z-10">
+            <div class="relative flex-grow">
+                <div class="absolute h-4 w-4 right-0 -translate-y-full translate-x-1/2 bg-gray-800"></div>
+                <div class="absolute h-4 w-4 right-0 -translate-y-full oranje1 rounded-br-md border-0"></div>
             </div>
             <x-button.primary-button
                     class="relative -translate-y-full top-1 flex flex-col z-1"
                     @click="toggle()">
                 <i class="fa-solid fa-filter"></i>
-                <p>Filter</p>
+                <p class="text-white">Filter</p>
             </x-button.primary-button>
-            <div class="relative">
-                <div class="bg-gray-800 h-3 w-3 absolute -translate-y-full"></div>
-                <div class="bg-gray-100 h-3 w-3 absolute -translate-y-full rounded-bl-md border-0"></div>
+            <div class="relative flex-grow">
+                <div class="absolute h-4 w-4 -translate-y-full -translate-x-1/2 bg-gray-800"></div>
+                <div class="absolute h-4 w-4 -translate-y-full oranje1 rounded-bl-md border-0"></div>
             </div>
         </div>
+        <div class="w-screen h-3 bg-gray-800 rounded-t-md"></div>
 
         <!--filters-->
-            <div class="w-screen min-h-12 rounded-t-md border-0 bg-white" x-show="isOpen">
-                <form method="GET"
-                      action="{{ route('huisdier.overview') }}"
-                      class="mb-4 flex flex-wrap gap-2">
+        <div class="absolute w-screen min-h-screen bg-gray-800 flex">
+            <form method="GET"
+                  action="{{ route('huisdier.overview') }}"
+                  class="mb-4 flex flex-wrap gap-2">
 
-                    <x-input.text-input
-                          type="text"
-                          name="search"
-                          placeholder="Zoek op naam of soort"
-                          value="{{ request('search') }}">
-                    </x-input.text-input>
+                <x-input.text-input
+                        type="text"
+                        name="search"
+                        placeholder="Zoek op naam of soort"
+                        value="{{ request('search') }}">
+                </x-input.text-input>
 
-                    <p>Soort: </p>
-                    <input type="checkbox" name="soort[]" id="hond" value="hond"
-                           {{ in_array('hond', request('soort', [])) ? 'checked' : '' }}>
-                    <label for="hond"><i class="fa-solid fa-dog text-gray-700 text-4xl"></i></label>
+                <p>Soort: </p>
+                <input type="checkbox" name="soort[]" id="hond" value="hond"
+                        {{ in_array('hond', request('soort', [])) ? 'checked' : '' }}>
+                <label for="hond"><i class="fa-solid fa-dog text-gray-700 text-4xl"></i></label>
 
-                    <input type="checkbox" name="soort[]" id="kat" value="kat"
-                           {{ in_array('kat', request('soort', [])) ? 'checked' : '' }}>
-                    <label for="kat"><i class="fa-solid fa-cat text-gray-700 text-4xl"></i></label>
+                <input type="checkbox" name="soort[]" id="kat" value="kat"
+                        {{ in_array('kat', request('soort', [])) ? 'checked' : '' }}>
+                <label for="kat"><i class="fa-solid fa-cat text-gray-700 text-4xl"></i></label>
 
-                    <input type="checkbox" name="soort[]" id="vogel" value="vogel"
-                           {{ in_array('vogel', request('soort', [])) ? 'checked' : '' }}>
-                    <label for="vogel"><i class="fa-solid fa-feather text-gray-700 text-4xl"></i></label>
+                <input type="checkbox" name="soort[]" id="vogel" value="vogel"
+                        {{ in_array('vogel', request('soort', [])) ? 'checked' : '' }}>
+                <label for="vogel"><i class="fa-solid fa-feather text-gray-700 text-4xl"></i></label>
 
-                    <input type="checkbox" name="soort[]" id="paard" value="paard"
-                           {{ in_array('paard', request('soort', [])) ? 'checked' : '' }}>
-                    <label for="paard"><i class="fa-solid fa-horse text-gray-700 text-4xl"></i></label>
+                <input type="checkbox" name="soort[]" id="paard" value="paard"
+                        {{ in_array('paard', request('soort', [])) ? 'checked' : '' }}>
+                <label for="paard"><i class="fa-solid fa-horse text-gray-700 text-4xl"></i></label>
 
-                    <input type="checkbox" name="soort[]" id="vis" value="vis"
-                           {{ in_array('vis', request('soort', [])) ? 'checked' : '' }}>
-                    <label for="vis"><i class="fa-solid fa-fish text-gray-700 text-4xl"></i></label>
+                <input type="checkbox" name="soort[]" id="vis" value="vis"
+                        {{ in_array('vis', request('soort', [])) ? 'checked' : '' }}>
+                <label for="vis"><i class="fa-solid fa-fish text-gray-700 text-4xl"></i></label>
 
-                    <input type="checkbox" name="soort[]" id="anders" value="anders"
-                           {{ in_array('anders', request('soort', [])) ? 'checked' : '' }}>
-                    <label for="anders"><i class="fa-solid fa-ellipsis text-gray-700 text-4xl"></i></label>
+                <input type="checkbox" name="soort[]" id="anders" value="anders"
+                        {{ in_array('anders', request('soort', [])) ? 'checked' : '' }}>
+                <label for="anders"><i class="fa-solid fa-ellipsis text-gray-700 text-4xl"></i></label>
 
-                    <a href="{{ route('huisdier.overview') }}">
-                        <x-button.secondary-button>Verwijder filters</x-button.secondary-button>
-                    </a>
+                <a href="{{ route('huisdier.overview') }}">
+                    <x-button.secondary-button>Verwijder filters</x-button.secondary-button>
+                </a>
 
-                    <button class="relative left-4 w-1/4" type="submit">
-                        <img class="w-4/5" src="{{ asset('img/button_paw.png') }}" alt="Ga">
-                    </button>
+                <button class="relative left-4 w-1/4" type="submit">
+                    <img class="w-3/5 relative" src="{{ asset('img/button_paw.png') }}" alt="Ga">
+                </button>
 
-                </form>
+            </form>
 
-            </div>
         </div>
         <div class="w-screen oranje1 h-3 absolute bottom-2 z-0"></div>
     </div>
