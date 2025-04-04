@@ -116,8 +116,5 @@
                 </div>
             @endif
         </div>
-        @if ($huisdier->baasje == $user)
-        <x-button.secondary-button class="col-start-2 col-end-12 mt-3 w-max">Pas aan</x-button.secondary-button>
-        @endif
     </main>
 </x-app-layout>
