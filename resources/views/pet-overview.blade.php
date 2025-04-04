@@ -102,7 +102,7 @@
 
 
                 <button class="right-0 top-48 absolute w-1/4 sm:top-40" type="submit">
-                    <img class="w-3/5 relative" src="{{ asset('img/button_paw.png') }}" alt="Ga">
+                    <img class="w-3/5 relative md:w-2/5" src="{{ asset('img/button_paw.png') }}" alt="Ga">
                 </button>
 
             </form>
