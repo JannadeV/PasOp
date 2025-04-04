@@ -52,7 +52,7 @@
                   action="{{ route('huisdier.overview') }}"
                   class="mb-4 gap-2">
 
-                <section class="grid grid-cols-3 justify-items-center gap-2">
+                <section class="relative grid grid-cols-3 justify-items-center gap-2 w-2/3 mx-auto">
 
                     <x-input.text-input
                         type="text"
@@ -101,7 +101,7 @@
                 </section>
 
 
-                <button class="right-0 top-48 absolute w-1/4" type="submit">
+                <button class="right-0 top-48 absolute w-1/4 sm:top-40" type="submit">
                     <img class="w-3/5 relative" src="{{ asset('img/button_paw.png') }}" alt="Ga">
                 </button>
 
