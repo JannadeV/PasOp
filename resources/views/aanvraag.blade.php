@@ -113,9 +113,9 @@
 
                     @if (count($aanvraag->huisfotos) == 0)
                         @if ($user == $aanvraag->oppasser)
-                        <p>Voeg foto's van uw huis toe zodat het baasje kan bepalen of u op het dier mag passen.</p>
+                        <p class="text-center">Voeg foto's van uw huis toe zodat het baasje kan bepalen of u op het dier mag passen.</p>
                         @else
-                        <p>Wacht tot de potentiele oppasser foto's van hun huis opstuurt.</p>
+                        <p class="text-center">Wacht tot de potentiele oppasser foto's van hun huis opstuurt.</p>
                         @endif
                         <p>.</p>
 
@@ -140,7 +140,7 @@
                             @if($user == $aanvraag->oppasser)
                             <p class="text-center">Wacht tot het baasje uw oppasaanvraag beantwoordt.</p>
                             @elseif(! $user->role == "admin")
-                            <p>Vindt u het goed als {{ $aanvraag->oppasser->name }} op uw dier past?</p>
+                            <p class="text-center">Vindt u het goed als {{ $aanvraag->oppasser->name }} op uw dier past?</p>
                             <form method="POST" enctype="multipart/form-data"
                                   action="{{ route('aanvraag.update', ['aanvraag' => $aanvraag]) }}">
                                 @csrf
@@ -156,12 +156,12 @@
 
                         @elseif ($aanvraag->antwoord == 0)
                             @if ($user == $aanvraag->oppasser)
-                            <p>Helaas, uw oppasaanvraag is afgekeurd. Probeer het bij een ander dier opnieuw.</p>
+                            <p class="text-center">Helaas, uw oppasaanvraag is afgekeurd. Probeer het bij een ander dier opnieuw.</p>
                             <x-button.primary-button onclick="{{ route('huisdier.overview') }}">
                                 Aanbod huisdieren
                             </x-button.primary-button>
                             @else
-                            <p>De oppasaanvraag is afgekeurd.</p>
+                            <p class="text-center">De oppasaanvraag is afgekeurd.</p>
                             <form method="POST" enctype="multipart/form-data"
                                   action="{{ route('aanvraag.update', ['aanvraag' => $aanvraag]) }}">
                                 @csrf
