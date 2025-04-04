@@ -7,7 +7,7 @@
     </x-slot>
 
     <!--pet cards-->
-    <div class="p-1 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1">
+    <div class="mx-2 p-1 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1">
         @foreach ($huisdiers as $huisdier)
         <div class="col-span-1">
             <x-cards.pet-card :huisdier="$huisdier"
@@ -39,7 +39,7 @@
                 <i class="fa-solid fa-filter"></i>
                 <p class="text-white">Filter</p>
             </x-button.primary-button>
-            <div class="relative flex-grow right-px">
+            <div class="relative flex-grow">
                 <div class="absolute h-4 w-4 -translate-y-full -translate-x-1/2 bg-gray-800"></div>
                 <div class="absolute h-4 w-4 -translate-y-full oranje1 rounded-bl-md border-0"></div>
             </div>
@@ -59,7 +59,7 @@
                         name="search"
                         placeholder="Zoek op naam of soort"
                         value="{{ request('search') }}"
-                        class="col-span-3 w-1/2 mt-4">
+                        class="col-span-3 sm:w-1/2 mt-4">
                     </x-input.text-input>
 
                     <p class="col-span-3 text-white justify-self-start pl-20">Soort: </p>
