@@ -34,7 +34,7 @@
          x-transition:enter-end="opacity-100 scale-100"
          x-transition:leave="transition ease-in duration-75"
          x-transition:leave-start="opacity-100 scale-100">
-        <div class="rounded-md py-1 px-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1">
+        <div class="rounded-md py-1 px-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-1">
             {{ $cards }}
         </div>
     </div>
