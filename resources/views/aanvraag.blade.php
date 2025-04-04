@@ -30,28 +30,26 @@
     </style>
 
     <x-slot name="header">
-        <h2 class="font-semibold text-2xl text-gray-800 dark:text-gray-200 leading-tight">
-            Oppasaanvraag
-        </h2>
+        {{ __('Oppasaanvraag') }}
     </x-slot>
 
-    <div class="h-full">
-        <div class="flex flex-row items-stretch bg-gray-200 w-screen space-x-2 p-2">
-            <div class="grid grid-cols-2 grid-rows-3 place-items-center bg-gray-100 border border-solid border-gray-300 rounded-lg">
-                <img class="col-span-1 row-span-full h-full w-full object-cover rounded-l-lg"
+    <div>
+        <!--info-->
+        <section class="flex flex-row w-screen space-x-2 p-2">
+            <div class="w-3/5 bg-white border border-solid border-oranje3 rounded-lg grid grid-cols-2 grid-rows-2 place-items-center">
+                <img class="col-span-1 row-span-full object-cover rounded-l-lg"
                      src="{{ asset($aanvraag->oppastijds[0]->huisdier->dierfotos[0]->path) }}"
                      alt="Foto van een huisdier" >
                 <h2 class="text-lg">
                     {{ $aanvraag->oppastijds[0]->huisdier->naam }}
                 </h2>
-                <p>Bio</p>
                 <a href="{{ route('huisdier.show', ['huisdier' => $aanvraag->oppastijds[0]->huisdier]) }}">
                     <x-button.primary-button>Profiel</x-button.primary-button>
                 </a>
             </div>
-            <div class="w-44 grid grid-rows-3 grid-flow-col gap-1 items-center">
+            <div class="w-2/5 flex flex-col gap-1 items-center justify-evenly">
                 @foreach ($aanvraag->oppastijds as $oppastijd)
-                    <div class="w-28 self-center border border-solid border-gray-300 rounded-lg p-2 bg-gray-100">
+                    <div class="w-28 p-2 bg-white border border-solid border-oranje3 rounded-lg">
                         <p class="text-center leading-tight">
                             {{ date("d-m-'y", strtotime($oppastijd->datum)) }}
                         </p>
@@ -61,9 +59,11 @@
                     </div>
                 @endforeach
             </div>
-        </div>
-        <div class="relative h-full">
-            <div class="flex flex-col place-items-center text-gray-600 space-y-2 py-4 relative">
+        </section>
+
+        <!--voortgang-->
+        <div>
+            <div class="relative text-gray-600 py-4 w-4/5 mx-auto flex flex-col place-items-center space-y-3">
                 @if ($aanvraag->antwoord == 1)
                     <p>De oppasafspraak staat vast</p>
                     <p>.</p>
@@ -127,11 +127,10 @@
                         @endif
                         <div class="flex flex-row">
                             @foreach ($aanvraag->huisfotos as $huisfoto)
-                            <div>
+                            <div class="flex flex-row">
                                 <img class="h-28 w-20 object-cover rounded-lg relative"
                                      src="{{ asset($huisfoto->path) }}"
                                      alt="Foto van een huis">
-                                <div class="h-28 w-20 bg-white bg-opacity-30 hover:bg-opacity-0 rounded-lg relative -top-28"></div>
                             </div>
                             @endforeach
                         </div>
@@ -139,7 +138,7 @@
 
                         @if ($aanvraag->antwoord == -1)
                             @if($user == $aanvraag->oppasser)
-                            <p>Wacht tot het baasje uw oppasaanvraag beantwoordt.</p>
+                            <p class="text-center">Wacht tot het baasje uw oppasaanvraag beantwoordt.</p>
                             @elseif(! $user->role == "admin")
                             <p>Vindt u het goed als {{ $aanvraag->oppasser->name }} op uw dier past?</p>
                             <form method="POST" enctype="multipart/form-data"

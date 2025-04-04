@@ -47,7 +47,7 @@
 
             @if (isset($header))
             <div class="relative h-12 w-screen bg-white border-b border-oranje2 place-content-center items-center flex">
-                <h1 class="font-semibold text-2xl text-gray-800 leading-tight">
+                <h1 class="text-2xl text-gray-800 leading-tight">
                     {{ $header }}
                 </h1>
             </div>
