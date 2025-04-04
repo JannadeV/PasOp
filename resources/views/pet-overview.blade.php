@@ -28,7 +28,7 @@
          :class="{'-mt-72': isOpen, '-mt-2': ! isOpen}">
 
         <!--toggle bar-->
-        <div class="absolute flex flex-row w-screen top-1 z-10">
+        <div class="absolute flex flex-row w-screen top-0 z-10">
             <div class="relative flex-grow">
                 <div class="absolute h-4 w-4 right-0 -translate-y-full translate-x-1/2 bg-gray-800"></div>
                 <div class="absolute h-4 w-4 right-0 -translate-y-full oranje1 rounded-br-md border-0"></div>
@@ -39,7 +39,7 @@
                 <i class="fa-solid fa-filter"></i>
                 <p class="text-white">Filter</p>
             </x-button.primary-button>
-            <div class="relative flex-grow">
+            <div class="relative flex-grow right-px">
                 <div class="absolute h-4 w-4 -translate-y-full -translate-x-1/2 bg-gray-800"></div>
                 <div class="absolute h-4 w-4 -translate-y-full oranje1 rounded-bl-md border-0"></div>
             </div>
