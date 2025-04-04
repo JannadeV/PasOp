@@ -18,7 +18,7 @@
     </div>
 
     <!--filter-->
-    <div class="absolute h-screen top-full"
+    <div class="absolute h-screen top-full transition-all duration-500"
          x-data="{
             open: false,
             get isOpen() { return this.open },
