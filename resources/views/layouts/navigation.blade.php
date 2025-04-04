@@ -18,9 +18,6 @@
     <x-navigation.nav-link :href="route('huisdier.overview')" :active="request()->routeIs('huisdier.overview')">
         Huisdieroverzicht
     </x-navigation.nav-link>
-    <x-navigation.nav-link :href="route('profile.edit')" :active="request()->routeIs('profile.edit')">
-        Profiel
-    </x-navigation.nav-link>
 
     <!-- Desktop Settings dropdown -->
     @auth
