@@ -30,12 +30,12 @@
         </h2>
     </x-slot>
 
-    <main class="grid grid-cols-12">
+    <main class="flex flex-col md:flex-row">
         <x-image-carousel
             :fotos="$huisdier->dierfotos"
             :huisdier="$huisdier"
             :showAdd="$huisdier->baasje == $user"
-            class="col-start-1 col-end-13 h-72 z-0">
+            class="flex-grow md:flex-grow-0 z-0">
             <x-slot name="addForm">
                 <x-input.add-picture :route="route('dierfotos.store')" fotoname="dierfoto">
                     <x-slot name="connectTo">
@@ -45,60 +45,68 @@
             </x-slot>
         </x-image-carousel>
 
-        <p class="col-start-2 col-end-12 pt-1 font-bold">Oppastijden</p>
-        <div class="col-start-2 col-end-12 flex flex-col border border-gray-300 rounded-lg dark:bg-gray-700 dark:border-gray-600">
+        <div class="w-4/5 md:h-4/5 mx-auto md:mx-10 my-4 md:my-auto md:pt-4 border border-gray-300 rounded-lg flex flex-col">
+            <p class="mx-auto mt-4 font-bold lg:text-lg">Oppastijden</p>
             @if($huisdier->baasje != $user)
-            <form onsubmit="return validateForm()" action="{{ route('aanvraag.store') }}" method="POST" class="grid grid-cols-1 dark:text-white border-b border-gray-300">
+            <form onsubmit="return validateForm()"
+                  action="{{ route('aanvraag.store') }}"
+                  method="POST"
+                  class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 gap-4 p-4">
                 @csrf
                 @foreach($huisdier->oppastijds as $index=>$oppastijd)
-                    @if($index%2 == 0)
-                        @php($border_side = "border-r")
-                    @else
-                        @php($border_side = "")
-                    @endif
-                    <div class="col-span-1 {{$border_side}} border-gray-300">
-                        <div class="flex items-center ps-3">
+                    <div class="col-span-1">
+                        <div class="flex items-center">
                             <input type="hidden" name="tijden[{{ $index }}][id]" value="{{ $oppastijd->id }}">
-                            <input type="checkbox" name="tijden[{{ $index }}][selected]" value="1" id="vue-checkbox{{ $index }}" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                            <label for="vue-checkbox{{ $index }}" class="py-3 ms-2 dark:text-gray-300">
-                                <p class="text-xs">{{ date("d-m-'y", strtotime($oppastijd->datum))}}</p>
-                                <p class="text-xs">{{ substr($oppastijd->start, 0, 5) }} - {{ substr($oppastijd->eind, 0, 5) }}</p>
+                            <input type="checkbox" name="tijden[{{ $index }}][selected]" value="1" id="vue-checkbox{{ $index }}"
+                                   class="w-4 h-4 text-blue-600 bg-white border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
+                            <label for="vue-checkbox{{ $index }}" class="py-3 ms-2">
+                                <p class="text-sm">{{ date("d-m-'y", strtotime($oppastijd->datum))}}</p>
+                                <p class="text-sm">{{ substr($oppastijd->start, 0, 5) }} - {{ substr($oppastijd->eind, 0, 5) }}</p>
                             </label>
                         </div>
                     </div>
                 @endforeach
-                <x-button.primary-button type="submit" class="justify-self-center self-center m-1">Pas op!</x-button.primary-button>
+                <x-button.primary-button type="submit"
+                                         class="col-span-2 sm:col-span-3 md:col-span-2 justify-self-center self-center m-1">
+                    Pas op!
+                </x-button.primary-button>
             </form>
             @else
-            <div class="grid grid-cols-2 dark:text-white border-b border-gray-300">
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 gap-4 p-4 justify-items-center">
                 @foreach($huisdier->oppastijds as $index=>$oppastijd)
-                    <div class="col-span-1">
+                    <div class="m-1">
                         <div class="flex items-center ps-3">
                             <form method="POST"
-                                  action="{{ route('oppastijd.destroy', ['oppastijd' => $oppastijd]) }}">
+                                  action="{{ route('oppastijd.destroy', ['oppastijd' => $oppastijd]) }}"
+                                  class="flex flex-row w-full gap-2">
                                 @csrf
                                 @method('DELETE')
-                                <label class="py-3 ms-2">
-                                    <p class="text-xs">{{ date("d-m-'y", strtotime($oppastijd->datum))}}</p>
-                                    <p class="text-xs">{{ substr($oppastijd->start, 0, 5) }} - {{ substr($oppastijd->eind, 0, 5) }}</p>
+                                <label class="flex-grow">
+                                    <p class="text-sm">{{ date("d-m-'y", strtotime($oppastijd->datum))}}</p>
+                                    <p class="text-sm">{{ substr($oppastijd->start, 0, 5) }} - {{ substr($oppastijd->eind, 0, 5) }}</p>
                                 </label>
                                 <button type="submit"><i class="fa-solid fa-trash"></i></button>
                             </form>
                         </div>
                     </div>
                 @endforeach
-                <div class="col-span-1">
+                <div class="col-span-2 sm:col-span-3 md:col-span-2 m-2 scrollable">
                     <div class="flex items-center ps-3">
                         <form method="POST"
-                              action="{{ route('oppastijd.store') }}">
+                              action="{{ route('oppastijd.store') }}"
+                              class="flex flex-row">
                             @csrf
-                            <x-input.input-label for="datum" class="hidden">Datum: </x-input.input-label>
-                            <x-input.text-input type="date" name="datum"/>
-                            <x-input.input-label for="start" class="hidden">Van: </x-input.input-label>
-                            <x-input.text-input type="time" name="start" id="start"/>
-                            <x-input.input-label for="eind" class="hidden">Tot: </x-input.input-label>
-                            <x-input.text-input type="time" name="eind" id="eind"/>
-                            <input type="hidden" name="huisdier_id" value="{{ $huisdier->id }}">
+                            <div class="flex flex-col">
+                                <x-input.input-label for="datum" class="hidden">Datum: </x-input.input-label>
+                                <x-input.text-input type="date" name="datum" id="datum" class="text-sm p-1"/>
+                                <div class="flex flex-row">
+                                    <x-input.input-label for="start" class="hidden">Van: </x-input.input-label>
+                                    <x-input.text-input type="time" name="start" id="start" class="text-sm p-1"/>
+                                    <x-input.input-label for="eind" class="hidden">Tot: </x-input.input-label>
+                                    <x-input.text-input type="time" name="eind" id="eind" class="text-sm p-1"/>
+                                </div>
+                                <input type="hidden" name="huisdier_id" value="{{ $huisdier->id }}">
+                            </div>
                             <x-button.small-secondary-button type="submit">
                                 <i class="fa-solid fa-plus"></i>
                             </x-button.small-secondary-button>
@@ -108,8 +116,5 @@
                 </div>
             @endif
         </div>
-        @if ($huisdier->baasje == $user)
-        <x-button.secondary-button class="col-start-2 col-end-12 mt-3 w-max">Pas aan</x-button.secondary-button>
-        @endif
     </main>
 </x-app-layout>

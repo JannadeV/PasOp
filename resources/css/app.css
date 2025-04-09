@@ -2,35 +2,52 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+@keyframes loading {
+    0% {left:37.5%;transform: scaleX(-1);}
+    24.99% {left:75%;transform: scaleX(-1);}
+    25% {transform: scaleX(1);}
+    74.99% {transform: scaleX(1);}
+    75% {left:0%;transform: scaleX(-1);}
+    100% {left:37.5%;transform: scaleX(-1);}
+}
+
 .linkstien {
     left: 10%;
 }
 
-h1, h3, h4 {
+h1, h4 {
     font-family: "Kurale", serif;
 }
 
-p, h2 {
+p, h2, h3 {
     font-family: "Poppins", serif;
 }
 
 .oranje1 {background-color: #FEEFE5;}
 .oranje2 {background-color: #FEE3D4;}
-.oranje3 {background-color: #FEE3D4;}
+.oranje3 {background-color: #FED7C3;}
 .oranje4 {background-color: #FFCBB3;}
 .oranje5 {background-color: #FFBEA2;}
 .oranje6 {background-color: #FFB291;}
 .oranje7 {background-color: #FFA680;}
 .border-oranje1 {border-color: #FEEFE5;}
 .border-oranje2 {border-color: #FEE3D4;}
-.border-oranje3 {border-color: #FEE3D4;}
+.border-oranje3 {border-color: #FED7C3;}
 .border-oranje4 {border-color: #FFCBB3;}
 .border-oranje5 {border-color: #FFBEA2;}
 .border-oranje6 {border-color: #FFB291;}
 .border-oranje7 {border-color: #FFA680;}
+.text-oranje1 {color: #FEEFE5;}
+.text-oranje2 {color: #FEE3D4;}
+.text-oranje3 {color: #FED7C3;}
+.text-oranje4 {color: #FFCBB3;}
+.text-oranje5 {color: #FFBEA2;}
+.text-oranje6 {color: #FFB291;}
+.text-oranje7 {color: #FFA680;}
 
-.overlay-aan {background-color: rgba(0,0,0,0.3); display: initial}
+.overlay-aan {background-color: rgba(0,0,0,0.3); display: inline}
 .overlay-uit {background-color: rgba(0,0,0,0); display: none}
+
 
 .grid-welkom-portrait {
     grid-template-rows: 1fr 0 1fr;
@@ -38,3 +55,5 @@ p, h2 {
 .grid-welkom-landscape {
     grid-template-columns: 1fr 1fr;
 }
+
+

@@ -1,43 +1,21 @@
-@props(['align' => 'right', 'width' => '48', 'contentClasses' => 'py-1 bg-white dark:bg-gray-700'])
+<div  x-data="{ open: false }" x-effect="console.log(open)"
+      class="w-full flex justify-around items-baseline pt-4">
 
-@php
-switch ($align) {
-    case 'left':
-        $alignmentClasses = 'ltr:origin-top-left rtl:origin-top-right start-0';
-        break;
-    case 'top':
-        $alignmentClasses = 'origin-top';
-        break;
-    case 'right':
-    default:
-        $alignmentClasses = 'ltr:origin-top-right rtl:origin-top-left end-0';
-        break;
-}
+    @php $showClasses = $mobile ? "flex sm:hidden" : "hidden sm:flex"; @endphp
 
-switch ($width) {
-    case '48':
-        $width = 'w-48';
-        break;
-}
-@endphp
-
-<div class="relative" x-data="{ open: false }" @click.outside="open = false" @close.stop="open = false">
-    <div @click="open = ! open">
-        {{ $trigger }}
+    <div class="-me-2 {{ $showClasses}} items-center">
+        <button @click="open = !open"
+                @click.outside="open = false"
+                @close.stop="open = false"
+                class="z-40 inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
+            {{ $trigger }}
+        </button>
     </div>
 
-    <div x-show="open"
-            x-transition:enter="transition ease-out duration-200"
-            x-transition:enter-start="opacity-0 scale-95"
-            x-transition:enter-end="opacity-100 scale-100"
-            x-transition:leave="transition ease-in duration-75"
-            x-transition:leave-start="opacity-100 scale-100"
-            x-transition:leave-end="opacity-0 scale-95"
-            class="absolute z-50 mt-2 {{ $width }} rounded-md shadow-lg {{ $alignmentClasses }}"
-            style="display: none;"
-            @click="open = false">
-        <div class="rounded-md ring-1 ring-black ring-opacity-5 {{ $contentClasses }}">
-            {{ $content }}
-        </div>
+    <div :class="{'top-0': open, '-top-full': ! open}"
+          class="absolute mt-20 right-0 w-3/4 border-x-2 border-b-2 border-oranje3 block rounded-b-lg oranje1 z-20 transition-all duration-500">
+
+        {{ $content }}
     </div>
+    <div :class="{'overlay-aan': open, 'overlay-uit': ! open}" class="transition duration-500 absolute left-0 w-screen h-screen z-10"></div>
 </div>

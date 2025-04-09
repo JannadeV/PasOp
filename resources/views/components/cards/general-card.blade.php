@@ -1,4 +1,4 @@
-<div class="relative flex bg-white h-40 border border-gray-200 rounded-lg shadow dark:border-gray-700 dark:bg-gray-800">
+<div class="relative flex bg-white h-40 border border-gray-200 rounded-lg shadow-md">
     @if( isset($bigFotoPath) )
     <img class="object-cover h-full w-48 rounded-l-lg md:rounded-none md:rounded-s-lg"
          src="{{ $bigFotoPath }}"

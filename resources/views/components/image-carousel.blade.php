@@ -1,5 +1,5 @@
 <div {{ $attributes->merge(['class' => 'relative w-full', 'id' => 'default-carousel', 'data-carousel' => 'static']) }}>
-    <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
+    <div class="relative h-96 overflow-hidden rounded-lg">
         @foreach($fotos as $index => $foto)
             <div class="{{ $index == 0 ? 'duration-700 ease-in-out' : 'hidden duration-700 ease-in-out' }}"
                  data-carousel-item="{{ $index == 0 ? 'active' : '' }}">
