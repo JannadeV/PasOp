@@ -35,6 +35,13 @@ class FirstSeeder extends Seeder
         $yuri->dierfotos()->create([
             'path' => 'img/yuri_bos.jpg'
         ]);
+        $blubbie = $baasje->huisdiers()->create([
+            'naam' => 'Blubbie',
+            'soort' => 'Vis',
+        ]);
+        $blubbie->dierfotos()->create([
+            'path' => 'img/blubbie.png'
+        ]);
 
         $yuri->oppastijds()->create([
             'datum' => '2024-04-19',
