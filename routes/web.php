@@ -6,7 +6,6 @@ use App\Http\Controllers\FotoController;
 use App\Http\Controllers\HuisdierController;
 use App\Http\Controllers\OppastijdController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 

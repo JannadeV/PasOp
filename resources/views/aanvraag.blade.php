@@ -32,7 +32,6 @@
     <x-slot name="header">
         {{ __('Oppasaanvraag') }}
     </x-slot>
-
     <div>
         <!--info-->
         <section class="flex flex-row w-screen space-x-2 p-2">

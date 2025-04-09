@@ -34,6 +34,7 @@
         <x-image-carousel
             :fotos="$huisdier->dierfotos"
             :huisdier="$huisdier"
+            :huisdier="$huisdier"
             :showAdd="$huisdier->baasje == $user"
             class="flex-grow md:flex-grow-0 z-0">
             <x-slot name="addForm">

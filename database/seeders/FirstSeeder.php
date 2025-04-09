@@ -79,5 +79,10 @@ class FirstSeeder extends Seeder
             'password' => Hash::make('admin'),
             'role' => "admin"
         ]);
+        
+        $oppasser->reviewsGot()->create([
+            'baasje_id' => $reviewer->id,
+            'rating' => '4',
+        ]);
     }
 }
