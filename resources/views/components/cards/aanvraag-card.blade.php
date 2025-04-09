@@ -1,5 +1,5 @@
 <x-cards.general-card
-    :bigFotoPath="asset($aanvraag->huisfotos[0]->path)"
+    :bigFotoPath="asset(isset($aanvraag->huisfotos[0]->path) ? $aanvraag->huisfotos[0]->path : 'img/huis.png')"
     :bigFotoAlt="'foto van het huis van de oppasser'"
     :title="$aanvraag->oppasser->name . ' wil op ' . $huisdier->naam . ' passen'">
 
