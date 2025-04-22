@@ -112,9 +112,15 @@
 
                     @if (count($aanvraag->huisfotos) == 0)
                         @if ($user == $aanvraag->oppasser)
-                        <p class="text-center">Voeg foto's van uw huis toe zodat het baasje kan bepalen of u op het dier mag passen.</p>
+                        <p class="text-center">Voeg een foto van uw huis toe zodat het baasje kan bepalen of u op het dier mag passen.</p>
+
+                            <x-input.add-picture class="w-full h-50" :route="route('huisfoto')" fotoname="huisfoto">
+                                <x-slot name="connectTo">
+                                    <input type="hidden" name="aanvraag" value="{{ $aanvraag->id }}">
+                                </x-slot>
+                            </x-input.add-picture>
                         @else
-                        <p class="text-center">Wacht tot de potentiele oppasser foto's van hun huis opstuurt.</p>
+                        <p class="text-center">Wacht tot de potentiele oppasser een foto van hun huis opstuurt.</p>
                         @endif
                         <p>.</p>
 

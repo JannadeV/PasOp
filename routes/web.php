@@ -28,6 +28,7 @@ Route::controller(HuisdierController::class)->group(function () {
 });
 
 Route::post('/upload', [FotoController::class, 'store']);
+Route::post('/huisfoto', [FotoController::class, 'store_huisfoto'])->name('huisfoto');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

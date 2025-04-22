@@ -42,6 +42,23 @@ class FotoController extends Controller
 
     }
 
+    public function store_huisfoto(Request $request)
+    {
+        try {
+            $validated = $request->validate([
+                'foto' => 'required|image|mimes:jpeg,jpg,png,gif|max:2048',
+            ]);
+
+            $path = $validated['foto']->store('images');
+
+            return response()->json(['path' => $path], 200);
+
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Failed to upload file.'], 500);
+        }
+
+    }
+
     /**
      * Display the specified resource.
      */
