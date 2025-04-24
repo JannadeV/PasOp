@@ -31,17 +31,17 @@ class FirstSeeder extends Seeder
             'soort' => 'Hond',
         ]);
         $yuri->dierfotos()->create([
-            'path' => 'img/yuri_trein.png'
+            'path' => 'images/yuri_trein.png'
         ]);
         $yuri->dierfotos()->create([
-            'path' => 'img/yuri_bos.jpg'
+            'path' => 'images/yuri_bos.jpg'
         ]);
         $blubbie = $baasje->huisdiers()->create([
             'naam' => 'Blubbie',
             'soort' => 'Vis',
         ]);
         $blubbie->dierfotos()->create([
-            'path' => 'img/blubbie.png'
+            'path' => 'images/blubbie.png'
         ]);
 
         $yuri->oppastijds()->create([
