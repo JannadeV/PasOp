@@ -9,10 +9,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Huisfoto extends Foto
 {
     use HasFactory;
-    
+
     //Get the aanvraag that got this foto
     public function aanvraag(): BelongsTo
     {
         return $this->belongsTo(Aanvraag::class);
     }
+
+    protected $fillable = ['path', 'aanvraag_id'];
+
 }

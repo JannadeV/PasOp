@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Huisfoto;
 use Illuminate\Http\Request;
 
 class FotoController extends Controller
@@ -37,7 +38,7 @@ class FotoController extends Controller
             return response()->json(['path' => $path], 200);
 
         } catch (\Exception $e) {
-            return response()->json(['error' => 'Failed to upload file.'], 500);
+            return response()->json(['error' => "Failed to upload file. {{$e}}"], 500);
         }
 
     }
@@ -46,15 +47,23 @@ class FotoController extends Controller
     {
         try {
             $validated = $request->validate([
-                'foto' => 'required|image|mimes:jpeg,jpg,png,gif|max:2048',
+                'huisfoto' => 'required|image|mimes:jpeg,jpg,png,gif|max:2048',
+                'aanvraag_id' => 'required|exists:aanvraags,id'
             ]);
 
-            $path = $validated['foto']->store('images');
+            $path = $validated['huisfoto']->store('images', 'public');
+            //return response()->json(['path' => $path], 200);
 
-            return response()->json(['path' => $path], 200);
+            $huisfoto = Huisfoto::create([
+                'path' => $path, //bijv. 'images/foto.jpg'
+                'aanvraag_id' => $validated['aanvraag_id']
+            ]);
+
+            return redirect()->route('aanvraag.show', ['aanvraag' => $validated['aanvraag_id']]);
+
 
         } catch (\Exception $e) {
-            return response()->json(['error' => 'Failed to upload file.'], 500);
+            return response()->json(['error' => "Failed to upload file. {{$e}}"], 500);
         }
 
     }
