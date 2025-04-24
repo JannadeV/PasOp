@@ -12,6 +12,7 @@ use App\Models\Review;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class FirstSeeder extends Seeder
 {
@@ -64,7 +65,7 @@ class FirstSeeder extends Seeder
             'oppasser_id' => $oppasser->id,
         ]);
         $aanvraag->huisfotos()->create([
-            'path' => 'img/osso.png',
+            'path' => 'images/osso.png',
         ]);
 
         $reviewer = User::factory()->create([
@@ -79,10 +80,10 @@ class FirstSeeder extends Seeder
             'password' => Hash::make('admin'),
             'role' => "admin"
         ]);
-        
+        /*
         $oppasser->reviewsGot()->create([
             'baasje_id' => $reviewer->id,
             'rating' => '4',
-        ]);
+        ]);*/
     }
 }
