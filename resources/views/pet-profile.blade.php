@@ -38,7 +38,7 @@
             :showAdd="$huisdier->baasje == $user"
             class="flex-grow md:flex-grow-0 z-0">
             <x-slot name="addForm">
-                <x-input.add-picture :route="route('dierfotos.store')" fotoname="dierfoto">
+                <x-input.add-picture class="absolute left-1/4 w-1/2 h-full" :route="route('dierfotos.store')" fotoname="dierfoto">
                     <x-slot name="connectTo">
                         <input type="hidden" name="huisdier" value="{{ $huisdier->id }}">
                     </x-slot>

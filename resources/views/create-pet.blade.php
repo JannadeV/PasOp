@@ -47,7 +47,7 @@
         </section>
 
         <!--<p>Voeg een foto van het dier toe</p>
-        <x-input.add-picture :route="route('dierfotos.store')" fotoname="dierfoto"/>-->
+        <x-input.add-picture class="absolute left-1/4 w-1/2 h-full" :route="route('dierfotos.store')" fotoname="dierfoto"/>-->
 
         <x-button.primary-button type="submit" class="mx-auto">Maak het dier aan</x-button.primary-button>
 
