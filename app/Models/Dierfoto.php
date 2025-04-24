@@ -17,6 +17,7 @@ class Dierfoto extends Foto
     }
 
     protected $fillable = [
+        'path', 
         'huisdier_id'
     ];
 }

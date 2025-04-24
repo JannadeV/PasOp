@@ -11,7 +11,7 @@
         @foreach ($huisdiers as $huisdier)
         <div class="col-span-1">
             <x-cards.pet-card :huisdier="$huisdier"
-                              :path="isset($huisdier->dierfotos[0]) ? $huisdier->dierfotos[0]->path : 'img/huisdieren.jpg'"
+                              :path="isset($huisdier->dierfotos[0]) ? 'storage/' . $huisdier->dierfotos[0]->path : 'img/huisdieren.jpg'"
                               :showTimes='true'/>
         </div>
         @endforeach

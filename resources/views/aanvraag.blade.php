@@ -38,7 +38,7 @@
         <section class="w-screen p-2 oranje1 flex flex-row space-x-2">
             <div class="bg-white border border-oranje3 rounded-lg grid grid-cols-2 grid-rows-2 place-items-center">
                 <img class="col-span-1 row-span-full object-cover rounded-l-lg"
-                     src="{{ asset($aanvraag->oppastijds[0]->huisdier->dierfotos[0]->path) }}"
+                     src="{{ asset('storage/' . $aanvraag->oppastijds[0]->huisdier->dierfotos[0]->path) }}"
                      alt="Foto van een huisdier" >
                 <h2 class="text-lg">
                     {{ $aanvraag->oppastijds[0]->huisdier->naam }}

@@ -3,7 +3,7 @@
         @foreach($fotos as $index => $foto)
             <div class="{{ $index == 0 ? 'duration-700 ease-in-out' : 'hidden duration-700 ease-in-out' }}"
                  data-carousel-item="{{ $index == 0 ? 'active' : '' }}">
-                <img src="{{ asset($foto->path) }}" class="w-full h-full object-cover" alt="foto">
+                <img src="{{ asset('storage/' . $foto->path) }}" class="w-full h-full object-cover" alt="foto">
             </div>
         @endforeach
 

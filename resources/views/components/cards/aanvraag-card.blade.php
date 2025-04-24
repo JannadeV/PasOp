@@ -5,7 +5,7 @@
 
     <x-slot name="topRight">
         <img class="w-24 h-24 shadow rounded-full aspect-square object-cover"
-             src="{{ asset($huisdier->dierfotos[0]->path) }}"
+             src="{{ asset('storage/' . $huisdier->dierfotos[0]->path) }}"
              alt="foto van het op te passen dier"/>
     </x-slot>
 

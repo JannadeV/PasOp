@@ -29,25 +29,25 @@ class DierfotoController extends Controller
      */
     public function store(Request $request)
     {
+        try {
+            $validated = $request->validate([
+                'dierfoto' => 'required|image|mimes:jpeg,jpg,png,gif|max:2048',
+                'huisdier' => 'required|exists:huisdiers,id'
+            ]);
 
-        //liever niet via http client; zoektocht naar manier terwijl je binnen de applicatie blijft
-        //ws helpt https://laravel.com/docs/11.x/requests of .../responses
-        $response = Http::asForm()->post(url('/upload'), [
-            'foto' => $request->file('dierfoto')
-        ]);
-        $path = $response->json('path');
+            $path = $validated['dierfoto']->store('images', 'public');
 
-        $validated = $request->validate([
-            'huisdier' => 'required',
-        ]);
+            $dierfoto = Dierfoto::create([
+                'path' => $path,
+                'huisdier_id' => $validated['huisdier'],
+            ]);
 
-        $dierfoto = Dierfoto::create([
-            'path' => $path,
-            'huisdier_id' => $validated['huisdier']->id,
-        ]);
-        $dierfoto->huisdier()->sync($request->huisdierId);
+            return redirect()->route('huisdier.show', ['huisdier' => $validated['huisdier']]);
 
-        return redirect()->route('huisdier.show', ['huisdier' => $validated['huisdier']]);
+
+        } catch (\Exception $e) {
+            return response()->json(['error' => "Failed to upload file. {{$e}}"], 500);
+        }
     }
 
     /**
