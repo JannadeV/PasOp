@@ -68,22 +68,11 @@ class FirstSeeder extends Seeder
             'path' => 'images/osso.png',
         ]);
 
-        $reviewer = User::factory()->create([
-            'name' => 'Reviewer',
-            'email' => 'reviewer@example.com',
-            'password' => Hash::make('password')
-        ]);
-
         User::factory()->create([
             'name' => 'Admin',
             'email' => 'admin@example.com',
             'password' => Hash::make('admin'),
             'role' => "admin"
         ]);
-        /*
-        $oppasser->reviewsGot()->create([
-            'baasje_id' => $reviewer->id,
-            'rating' => '4',
-        ]);*/
     }
 }
