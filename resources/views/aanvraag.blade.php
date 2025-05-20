@@ -33,11 +33,11 @@
         {{ __('Oppasaanvraag') }}
     </x-slot>
 
-    <div class="h-full">
+    <div class="h-full md:flex md:flex-row md:p-4 md:space-16">
         <!--info-->
-        <section class="w-screen p-2 oranje1 flex flex-row space-x-2">
-            <div class="bg-white border border-oranje3 rounded-lg grid grid-cols-2 grid-rows-2 place-items-center">
-                <img class="col-span-1 row-span-full object-cover rounded-l-lg"
+        <section class="w-screen md:w-auto p-2 mx-auto oranje1 flex flex-row md:flex-col space-x-2 md:gap-2 justify-center md:justify-start">
+            <div class="max-w-sm bg-white border border-oranje3 rounded-lg grid grid-cols-2 grid-rows-2 place-items-center">
+                <img class="h-40 w-40 col-span-1 place-start row-span-full object-cover rounded-l-lg"
                      src="{{ asset('storage/' . $aanvraag->oppastijds[0]->huisdier->dierfotos[0]->path) }}"
                      alt="Foto van een huisdier" >
                 <h2 class="text-lg">
