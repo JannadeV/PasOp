@@ -43,7 +43,7 @@
             </div>
         </div>
 
-        <button type="submit" class="relative py-2 w-1/4 left-3/4">
+        <button type="submit" class="relative py-2 w-1/4 left-3/4 z-50">
             <img class="relative w-4/5" src="{{ asset('img/button_paw.png') }}" alt="Ga">
         </button>
     </form>
